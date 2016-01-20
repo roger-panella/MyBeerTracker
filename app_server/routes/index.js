@@ -10,5 +10,6 @@ router.get('/cellar', ctrlMain.cellar);
 router.get('/public_cellar', ctrlMain.publicCellar);
 router.get('/about', ctrlMain.about);
 router.get('/browse_cellars', ctrlMain.browseCellars);
+router.get('/add', ctrlMain.addBeer);
 
 module.exports = router;

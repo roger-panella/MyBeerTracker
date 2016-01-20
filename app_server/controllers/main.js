@@ -17,3 +17,7 @@ module.exports.browseCellars = function(req, res){
 module.exports.about = function(req, res){
   res.render('about', { title: 'About My Beer Tracker'});
 };
+
+module.exports.addBeer = function(req, res){
+  res.render('add', { title: 'Add a Beer'});
+}
