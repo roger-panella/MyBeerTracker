@@ -1,5 +1,5 @@
 module.exports.index = function(req, res){
-  res.render('index', { title: 'Express'});
+  res.render('index', { title: 'Home Page'});
 };
 
 module.exports.cellar = function(req, res){
@@ -8,6 +8,10 @@ module.exports.cellar = function(req, res){
 
 module.exports.publicCellar = function(req, res){
   res.render('public_cellar', { title: 'Public Cellar'});
+};
+
+module.exports.browseCellars = function(req, res){
+  res.render('browse_cellars', { title: 'Browse Cellars'});
 };
 
 module.exports.about = function(req, res){
