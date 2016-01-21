@@ -1,0 +1,56 @@
+var beerSchema = new mongoose.Schema({
+  brewery: {type: String, required: true},
+  beer: {type: String, required: true},
+  style: String,
+  date: String,
+  forTrade: Boolean
+});
+
+var cellarSchema = new mongoose.Schema({
+  username: String,
+  beers: [beerSchema]
+});
+
+db.cellars.save({
+  username: 'Ralph',
+  beers: [{
+    brewery: 'Goose Island',
+    beer: 'Bourbon County Stout',
+    style: 'American Imperial Stout',
+    date: '2014',
+    forTrade: true
+  }, {
+    brewery: 'Hill Farmstead',
+    beer: 'Damon',
+    style: 'American Imperial Stout',
+    date: '2013',
+    forTrade: false
+  }, {
+    brewery: 'Cantillon',
+    beer: 'Iris',
+    style: 'Lambic',
+    date: '2013',
+    forTrade: false
+  }, {
+    brewery: 'Kane',
+    beer: 'A Night to End All Dawns',
+    style: 'American Imperial Stout',
+    date: '2015',
+    forTrade: true
+  }, {
+    brewery: 'SARA',
+    beer: 'Saison Bernice',
+    style: 'Saison',
+    date: '2015',
+    forTrade: true
+  }]
+})
+
+Mongolab Database URI:
+mongodb://heroku_zgm6nbj7:7v5socq5b84mc0qnagsu68n9qr@ds047325.mongolab.com:47325/heroku_zgm6nbj7
+
+Connect to heroku Mongo db
+mongo ds047325.mongolab.com:47325/heroku_zgm6nbj7 -u heroku_zgm6nbj7 -p 7v5socq5b84mc0qnagsu68n9qr
+
+Connect to production api (since my system can't pull down Heroku variables):
+NODE_ENV=production MONGOLAB_URI=mongodb://heroku_zgm6nbj7:7v5socq5b84mc0qnagsu68n9qr@ds047325.mongolab.com:47325/heroku_zgm6nbj7 nodemon start
