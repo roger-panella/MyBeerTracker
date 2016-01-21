@@ -1,4 +1,4 @@
-<h1>{{title}}</h1>
+<h1>{{pageHeader.title}}</h1>
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-8 col-xs-12">
@@ -6,6 +6,15 @@
           <form method="get" action="/add">
             <button type="submit" id="add-beer-btn" class="btn btn-primary">Add a Beer</button>
           </form>
+          <script>
+          // Handlebars.registerHelper("getForTrade", function(forTrade){
+          //   if (this.forTrade == true) {
+          //     this.forTrade == "Yes"
+          //   } else {
+          //     this.forTrade == "No"
+          //   }
+          // });
+          </script>
           <table class="table table-striped">
             <tr>
               <th>Brewery</th>
@@ -14,53 +23,17 @@
               <th>Bottling Date</th>
               <th>For Trade?</th>
               <th>Edit</th>
-
             </tr>
+            {{#each beers}}
             <tr>
-              <td>Goose Island</td>
-              <td>Bourbon County Stout</td>
-              <td>American Imperial Stout</td>
-              <td>2014</td>
-              <td>Yes</td>
-              <td><a href="/" id="edit-beer-link"><span class="glyphicon glyphicon-pencil"></span></span></td>
+              <td>{{this.brewery}}</td>
+              <td>{{this.beer}}</td>
+              <td>{{this.style}}</td>
+              <td>{{this.date}}</td>
+              <td>{{getForTrade this.forTrade}}</td>
+              <td><a href="/" id="edit-beer-link"><span class="glyphicon glyphicon-pencil"></span></td>
+            {{/each}}
             </tr>
-            <tr>
-              <td>Hill Farmstead</td>
-              <td>Damon</td>
-              <td>American Imperial Stout</td>
-              <td>2013</td>
-              <td>No</td>
-              <td><a href="/" id="edit-beer-link"><span class="glyphicon glyphicon-pencil"></span></span></td>
-            </tr>
-            </tr>
-            <tr>
-              <td>Cantillon</td>
-              <td>Iris</td>
-              <td>Lambic</td>
-              <td>2013</td>
-              <td>No</td>
-              <td><a href="/" id="edit-beer-link"><span class="glyphicon glyphicon-pencil"></span></span></td>
-            </tr>
-            </tr>
-            <tr>
-              <td>Kane</td>
-              <td>A Night to End All Dawns</td>
-              <td>American Imperial Stout</td>
-              <td>2015</td>
-              <td>No</td>
-              <td><a href="/" id="edit-beer-link"><span class="glyphicon glyphicon-pencil"></span></span></td>
-            </tr>
-            </tr>
-            <tr>
-              <td>SARA</td>
-              <td>Saison Bernice</td>
-              <td>Saison</td>
-              <td>2015</td>
-              <td>Yes</td>
-              <td><a href="/" id="edit-beer-link"><span class="glyphicon glyphicon-pencil"></span></span></td>
-            </tr>
-            </tr>
-
           </table>
          </div>
         </div>

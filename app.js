@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var hbs = require('hbs');
 
 var routes = require('./app_server/routes/index');
 var users = require('./app_server/routes/users');
@@ -13,6 +14,16 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname,'app_server', 'views'));
 app.set('view engine', 'hbs');
+hbs.registerHelper("getForTrade", function(forTrade){
+  console.log(forTrade);
+  if (forTrade == true) {
+    console.log(forTrade + 'yeah!');
+    return 'Yes';
+  } else {
+    console.log('whoooo');
+    return 'No';
+  }
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
