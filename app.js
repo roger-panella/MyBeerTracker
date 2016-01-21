@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
+var mongoose = require('mongoose');
+require('./app_server/models/db');
 
 var routes = require('./app_server/routes/index');
 var users = require('./app_server/routes/users');
@@ -14,6 +16,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname,'app_server', 'views'));
 app.set('view engine', 'hbs');
+
 hbs.registerHelper("getForTrade", function(forTrade){
   if (forTrade == true) {
     return 'Yes';
@@ -21,6 +24,31 @@ hbs.registerHelper("getForTrade", function(forTrade){
     return 'No';
   }
 });
+
+// hsb.registerHelper("testy", function(data) {
+//
+//   var html = '<div>';
+//   // loop through data
+//   // only append stuff to div as needed
+//   // when done w/logic return the fully formed html
+//   html = html = '</div>';
+//
+//   return html;
+//
+//
+// });
+
+hbs.registerHelper("getStylesForSort", function(beers){
+  var stylesForSort = [];
+  for (var i = 0; i < beers.length;i++){
+    if (stylesForSort.indexOf(beers[i].style) == -1) {
+      stylesForSort.push(beers[i].style);
+    };
+  }
+  console.log(stylesForSort);
+  return stylesForSort;
+});
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

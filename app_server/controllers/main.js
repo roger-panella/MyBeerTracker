@@ -2,20 +2,12 @@ module.exports.index = function(req, res){
   res.render('index', { title: 'Home Page'});
 };
 
-// Handlebars.registerHelper("getForTrade", function(forTrade){
-//   if (this.forTrade == true) {
-//     this.forTrade == "Yes"
-//   } else {
-//     this.forTrade == "No"
-//   }
-// });
-
-
 module.exports.cellar = function(req, res){
   res.render('cellar', {
     title: 'Your Cellar | My Beer Tracker',
     pageHeader: {
-      title: 'Your Cellar'
+      username: 'Ralph',
+      title: 'Cellar'
     },
     beers: [{
       brewery: 'Goose Island',
@@ -52,7 +44,44 @@ module.exports.cellar = function(req, res){
 };
 
 module.exports.publicCellar = function(req, res){
-  res.render('public_cellar', { title: 'User\'s Public Cellar'});
+  res.render('public_cellar', {
+    title: 'User\'s Public Cellar | My Beer Tracker',
+    pageHeader: {
+      username: 'Ralph',
+      title: 'Cellar'
+    },
+    beers: [{
+      brewery: 'Goose Island',
+      beer: 'Bourbon County Stout',
+      style: 'American Imperial Stout',
+      date: '2014',
+      forTrade: true
+    },{
+      brewery: 'Hill Farmstead',
+      beer: 'Damon',
+      style: 'American Imperial Stout',
+      date: '2013',
+      forTrade: false
+    }, {
+      brewery: 'Cantillon',
+      beer: 'Iris',
+      style: 'Lambic',
+      date: '2013',
+      forTrade: false
+    },{
+      brewery: 'Kane',
+      beer: 'A Night to End All Dawns',
+      style: 'American Imperial Stout',
+      date: '2015',
+      forTrade: true
+    },{
+      brewery: 'SARA',
+      beer: 'Saison Bernice',
+      style: 'Saison',
+      date: '2015',
+      forTrade: true
+    }]
+  });
 };
 
 module.exports.browseCellars = function(req, res){

@@ -1,4 +1,4 @@
-<h1>{{title}}</h1>
+<h1>{{pageHeader.username}}'s {{pageHeader.title}}</h1>
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-8 col-xs-12">
@@ -11,46 +11,15 @@
               <th>Bottling Date</th>
               <th>For Trade?</th>
             </tr>
+            {{#each beers}}
             <tr>
-              <td>Goose Island</td>
-              <td>Bourbon County Stout</td>
-              <td>American Imperial Stout</td>
-              <td>2014</td>
-              <td>Yes</td>
+              <td>{{this.brewery}}</td>
+              <td>{{this.beer}}</td>
+              <td>{{this.style}}</td>
+              <td>{{this.date}}</td>
+              <td>{{getForTrade this.forTrade}}</td>
             </tr>
-            <tr>
-              <td>Hill Farmstead</td>
-              <td>Damon</td>
-              <td>American Imperial Stout</td>
-              <td>2013</td>
-              <td>No</td>
-            </tr>
-            </tr>
-            <tr>
-              <td>Cantillon</td>
-              <td>Iris</td>
-              <td>Lambic</td>
-              <td>2013</td>
-              <td>No</td>
-            </tr>
-            </tr>
-            <tr>
-              <td>Kane</td>
-              <td>A Night to End All Dawns</td>
-              <td>American Imperial Stout</td>
-              <td>2015</td>
-              <td>No</td>
-            </tr>
-            </tr>
-            <tr>
-              <td>SARA</td>
-              <td>Saison Bernice</td>
-              <td>Saison</td>
-              <td>2015</td>
-              <td>Yes</td>
-            </tr>
-            </tr>
-
+            {{/each}}
           </table>
          </div>
         </div>
@@ -59,23 +28,13 @@
           <div id="sort-column-container">
             <h4>Sort</h4>
             <table class="table table-striped">
+              {{#each beers}}
               <tr>
-                <td><input type="checkbox"></td>
-                <td>American Imperial Stout</td>
+               <td><input type="checkbox"></td>
+                <td>{{this.style}}</td>
               </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>Lambic</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>Saison</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>For Trade</td>
-              </tr>
-            </table>
+              {{/each}}
+          </table>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-<h1>{{pageHeader.title}}</h1>
+<h1>{{pageHeader.username}}'s {{pageHeader.title}}</h1>
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-8 col-xs-12">
@@ -7,13 +7,6 @@
             <button type="submit" id="add-beer-btn" class="btn btn-primary">Add a Beer</button>
           </form>
           <script>
-          // Handlebars.registerHelper("getForTrade", function(forTrade){
-          //   if (this.forTrade == true) {
-          //     this.forTrade == "Yes"
-          //   } else {
-          //     this.forTrade == "No"
-          //   }
-          // });
           </script>
           <table class="table table-striped">
             <tr>
@@ -32,8 +25,8 @@
               <td>{{this.date}}</td>
               <td>{{getForTrade this.forTrade}}</td>
               <td><a href="/" id="edit-beer-link"><span class="glyphicon glyphicon-pencil"></span></td>
-            {{/each}}
             </tr>
+            {{/each}}
           </table>
          </div>
         </div>
@@ -42,23 +35,14 @@
           <div id="sort-column-container">
             <h4>Sort</h4>
             <table class="table table-striped">
+              {{getStylesForSort beers}}
+              {{#each beers}}
               <tr>
-                <td><input type="checkbox"></td>
-                <td>American Imperial Stout</td>
+               <td><input type="checkbox"></td>
+                <td>{{this.style}}</td>
               </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>Lambic</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>Saison</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>For Trade</td>
-              </tr>
-            </table>
+              {{/each}}
+          </table>
         </div>
       </div>
     </div>
