@@ -15,12 +15,9 @@ var app = express();
 app.set('views', path.join(__dirname,'app_server', 'views'));
 app.set('view engine', 'hbs');
 hbs.registerHelper("getForTrade", function(forTrade){
-  console.log(forTrade);
   if (forTrade == true) {
-    console.log(forTrade + 'yeah!');
     return 'Yes';
-  } else {
-    console.log('whoooo');
+  } else if (forTrade == false) {
     return 'No';
   }
 });
