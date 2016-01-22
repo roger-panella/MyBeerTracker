@@ -27,27 +27,20 @@ function getTenBeers(data) {
     beerResults.push((data.response.beers.items[i].brewery.brewery_name) + ' ' + (data.response.beers.items[i].beer.beer_name));
     console.log(beerResults);
   };
+  displayBeers(beerResults);
 };
 
 function displayBeers(beerResults){
-
+  var searchResultsDiv = document.getElementById('beer-results');
+  var beerList = document.createElement("ul");
+  beerList.id = "beer-list";
+  searchResultsDiv.appendChild(beerList);
+  for (var i = 0; i < beerResults.length;i++) {
+    var singleBeerListElement = document.createElement("li");
+    singleBeerListElement.innerHTML = '<a href="#">'+beerResults[i]+'</a>';
+    // var singleBeerText = document.createTextNode(beerResults[i]);
+    // singleBeerListElement.appendChild(singleBeerText);
+    var allBeersList = document.getElementById("beer-list");
+    allBeersList.appendChild(singleBeerListElement);
+  }
 };
-
-
-
-
-// var requestOptions = {
-//   url : "https://api.untappd.com/v4/search/beer?client_id=01A58C550C16736146E4019C0B36C5A8478B128D&client_secret=89BF8DFD841F00A494EB2EFDCE95D477918A0880&q=pliny&limit=10",
-//   method : "GET",
-//   json : {}
-// };
-//
-// request(requestOptions, function(err, response, body){
-//   if (err){
-//     console.log(err);
-//   } else if (response.statusCode === 200) {
-//     console.log(body);
-//   } else {
-//     console.log(response.statusCode);
-//   }
-// });
