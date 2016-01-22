@@ -6,7 +6,9 @@
         <label for="exampleInputEmail1"></label>
         <input type="text" id="beer-search-box" value="{{beername}}" class="form-control">
       </fieldset>
-
+      <script>
+      document.getElementById("beer-search-box").readOnly=true;
+      </script>
       <fieldset class="form-group">
         <label for="inputDate">Date</label>
         <input type="Text" class="form-control" id="inputBeerDate" placeholder="Password">
