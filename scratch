@@ -1,15 +1,7 @@
-var beerSchema = new mongoose.Schema({
-  brewery: {type: String, required: true},
-  beer: {type: String, required: true},
-  style: String,
-  date: String,
-  forTrade: Boolean
-});
+Untappd API info:
 
-var cellarSchema = new mongoose.Schema({
-  username: String,
-  beers: [beerSchema]
-});
+Client ID: 01A58C550C16736146E4019C0B36C5A8478B128D
+Client Secret: 89BF8DFD841F00A494EB2EFDCE95D477918A0880
 
 db.cellars.save({
   username: 'Ralph',
