@@ -1,13 +1,13 @@
 <h1>{{title}}</h1>
 
   <div id="add-beer-container">
-    <form>
+    <!-- <form> -->
       <fieldset class="form-group">
         <label for="exampleInputEmail1">Search for a Beer</label>
-        <input type="text" class="form-control" placeholder="Type a Beer">
+        <input type="text" id="beer-search-box" class="form-control" placeholder="ex: Russian River Supplication">
         <small class="text-muted">Search for the beer you'd like to add</small>
       </fieldset>
-
+<!--
       <fieldset class="form-group">
         <label for="inputDate">Date</label>
         <input type="Text" class="form-control" id="inputBeerDate" placeholder="Password">
@@ -19,8 +19,12 @@
           <option>Yes</option>
           <option>No</option>
         </select>
-      </fieldset>
+      </fieldset> -->
 
-      <button type="submit" class="btn btn-primary" id="add-beer-button">Add Beer</button>
-    </form>
+      <button class="btn btn-primary" id="add-beer-button">Search</button>
+    <!-- </form> -->
   </div>
+
+  <section id="beer-results">
+
+  </section>
