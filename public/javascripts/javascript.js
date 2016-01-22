@@ -5,6 +5,11 @@ $(document).ready(function() {
     searchParams = splitSearch.join('+');
     searchUntappd(searchParams);
   });
+
+  // $('a').on('click', function(){
+  //   var taco = this.innerHTML();
+  //   console.log(taco)
+  // })
 });
 
 function searchUntappd(searchParams){
@@ -23,11 +28,11 @@ function searchUntappd(searchParams){
 
 function getTenBeers(data) {
   var beerResults = [];
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < data.response.beers.items.length; i++) {
     beerResults.push((data.response.beers.items[i].brewery.brewery_name) + ' ' + (data.response.beers.items[i].beer.beer_name));
     console.log(beerResults);
   };
-  displayBeers(beerResults);
+   displayBeers(beerResults);
 };
 
 function displayBeers(beerResults){
@@ -37,7 +42,10 @@ function displayBeers(beerResults){
   searchResultsDiv.appendChild(beerList);
   for (var i = 0; i < beerResults.length;i++) {
     var singleBeerListElement = document.createElement("li");
-    singleBeerListElement.innerHTML = '<a href="#">'+beerResults[i]+'</a>';
+    // singleBeerListElement.innerHTML = '<a href="/add">'+beerResults[i]+'</a>';
+    singleBeerListElement.innerHTML = '<a href="/add?q=' +beerResults[i] +'">'+beerResults[i]+'</a>';
+    // <input type="hidden" name="beerResultName" value=beerResults[i]></input>
+    singleBeerListElement.id = beerResults[i];
     // var singleBeerText = document.createTextNode(beerResults[i]);
     // singleBeerListElement.appendChild(singleBeerText);
     var allBeersList = document.getElementById("beer-list");

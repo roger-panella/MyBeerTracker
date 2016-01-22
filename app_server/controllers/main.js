@@ -111,6 +111,16 @@ module.exports.about = function(req, res){
   res.render('about', { title: 'About My Beer Tracker'});
 };
 
+module.exports.searchForBeer = function(req, res){
+  res.render('search', { title: 'Search for a Beer'});
+}
+
 module.exports.addBeer = function(req, res){
-  res.render('add', { title: 'Add a Beer'});
+  for (var i in req.query){
+    console.log(i);
+  };
+  var beerResult = req.query.q;
+    console.log('------beer Result-----');
+  console.log(beerResult);
+  res.render('add', { title: 'Add Beer', beername: beerResult});
 }
