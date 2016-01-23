@@ -1,11 +1,19 @@
 $(document).ready(function() {
   $("#add-beer-button").click(function(){
+    if (document.contains(document.getElementById("beer-list"))) {
+      document.getElementById("beer-list").remove();
+    };
     var search = $("#beer-search-box").val();
     var splitSearch = search.split(' ');
     searchParams = splitSearch.join('+');
     searchUntappd(searchParams);
   });
 });
+
+function removeSearchResults(){
+
+};
+
 
 function searchUntappd(searchParams){
   $.ajax({
