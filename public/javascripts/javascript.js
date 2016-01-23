@@ -37,7 +37,7 @@ function getTenBeers(data) {
     beerResults.push(beerObject);
     console.log(beerResults)
   };
-
+   console.log(beerResults);
    displayBeers(beerResults);
 };
 
@@ -62,9 +62,6 @@ function displayBeers(beerResults){
     allBeersList.appendChild(singleBeerDiv);
   }
 };
-
-
-
 
 
 
