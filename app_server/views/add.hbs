@@ -1,17 +1,26 @@
 <h1>{{title}}</h1>
 
+
   <div id="add-beer-container">
     <!-- <form> -->
       <fieldset class="form-group">
-        <label for="exampleInputEmail1"></label>
-        <input type="text" id="beer-search-box" value="{{beername}}" class="form-control">
+        <label for="exampleInputEmail1">Brewery</label>
+        <input type="text" id="brewery-search-box" value="{{breweryResult}}" class="form-control">
       </fieldset>
+
+      <fieldset class="form-group">
+        <label for="exampleInputEmail1">Beer</label>
+        <input type="text" id="beer-search-box" value="{{beerResult}}" class="form-control">
+      </fieldset>
+
       <script>
       document.getElementById("beer-search-box").readOnly=true;
+      document.getElementById("brewery-search-box").readOnly=true;
       </script>
+
       <fieldset class="form-group">
         <label for="inputDate">Date</label>
-        <input type="Text" class="form-control" id="inputBeerDate" placeholder="Password">
+        <input type="Text" class="form-control" id="inputBeerDate" placeholder="Date">
       </fieldset>
 
       <fieldset class="form-group">

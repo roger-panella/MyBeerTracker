@@ -99,6 +99,7 @@ module.exports.searchForBeer = function(req, res){
 }
 
 module.exports.addBeer = function(req, res){
-  var beerResult = req.query.q;
-  res.render('add', { title: 'Add Beer', beername: beerResult});
+  var brewery = req.query.brewery;
+  var beer = req.query.beer;
+  res.render('add', { title: 'Add Beer', breweryResult: brewery, beerResult: beer});
 }

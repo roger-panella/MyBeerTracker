@@ -16,7 +16,7 @@ function searchUntappd(searchParams){
       getTenBeers(data);
     },
       fail: function(error) {
-      console.log('AJAX call didn\t work, son');
+      console.log('AJAX call didn\t work, son!');
     }
   })
 };
@@ -33,11 +33,10 @@ function getTenBeers(data) {
     beerObject["imageUrl"] = data.response.beers.items[i].beer.beer_label;
     beerResults.push(beerObject);
   };
-  console.log(beerResults);
    displayBeers(beerResults);
 };
 
-// Beer rednering as objects -- testing!
+// Beers rendering with objects
 
 function displayBeers(beerResults){
   var searchResultsDiv = document.getElementById('beer-results');
@@ -52,7 +51,7 @@ function displayBeers(beerResults){
     labelImage.innerHTML = '<img id="label-image" src="'+beerResults[i].imageUrl+'">';
     singleBeerDiv.appendChild(labelImage);
     var singleBeerListElement = document.createElement("li");
-    singleBeerListElement.innerHTML = '<a href="/add?q='+beerResults[i].brewery+ ' ' +beerResults[i].beerName+'">'+beerResults[i].brewery+ ' ' + beerResults[i].beerName+'</a>';
+    singleBeerListElement.innerHTML = '<a href="/add?brewery='+beerResults[i].brewery+ '&beer=' +beerResults[i].beerName+'">'+beerResults[i].brewery+ ' ' + beerResults[i].beerName+'</a>';
     singleBeerDiv.appendChild(singleBeerListElement);
     var allBeersList = document.getElementById("beer-list");
     allBeersList.appendChild(singleBeerDiv);
