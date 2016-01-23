@@ -1,22 +1,5 @@
 var request = require('request');
 
-// var requestOptions = {
-//   url : "https://api.untappd.com/v4/search/beer?client_id=01A58C550C16736146E4019C0B36C5A8478B128D&client_secret=89BF8DFD841F00A494EB2EFDCE95D477918A0880&q=pliny&limit=10",
-//   method : "GET",
-//   json : {}
-// };
-//
-// request(requestOptions, function(err, response, body){
-//   if (err){
-//     console.log(err);
-//   } else if (response.statusCode === 200) {
-//     console.log(body);
-//   } else {
-//     console.log(response.statusCode);
-//   }
-// });
-
-
 module.exports.index = function(req, res){
   res.render('index', { title: 'Home Page'});
 };
@@ -116,11 +99,6 @@ module.exports.searchForBeer = function(req, res){
 }
 
 module.exports.addBeer = function(req, res){
-  for (var i in req.query){
-    console.log(i);
-  };
   var beerResult = req.query.q;
-    console.log('------beer Result-----');
-  console.log(beerResult);
   res.render('add', { title: 'Add Beer', beername: beerResult});
 }
