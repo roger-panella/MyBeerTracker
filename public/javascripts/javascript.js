@@ -10,10 +10,6 @@ $(document).ready(function() {
   });
 });
 
-function removeSearchResults(){
-
-};
-
 
 function searchUntappd(searchParams){
   $.ajax({
@@ -32,7 +28,6 @@ function searchUntappd(searchParams){
 // Beer search results as objects -- testing!
 
 function getTenBeers(data) {
-
   var beerResults = [];
   for (var i = 0; i < data.response.beers.items.length; i++) {
     var beerObject = {};
@@ -40,7 +35,9 @@ function getTenBeers(data) {
     beerObject["beerName"] = data.response.beers.items[i].beer.beer_name;
     beerObject["imageUrl"] = data.response.beers.items[i].beer.beer_label;
     beerResults.push(beerObject);
+    console.log(beerResults)
   };
+
    displayBeers(beerResults);
 };
 
