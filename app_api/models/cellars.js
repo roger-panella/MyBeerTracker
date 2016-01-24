@@ -14,5 +14,5 @@ var cellarSchema = new mongoose.Schema({
   beers: [beerSchema]
 });
 
-
+mongoose.model('Beer', beerSchema, 'beers');
 mongoose.model('Cellar', cellarSchema, 'cellars');

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var ctrlCellars = require('../controllers/cellar');
-var ctrlBeers = require('../controllers/beer')
+var ctrlCellars = require('../controllers/cellars');
+var ctrlBeers = require('../controllers/beers');
 
 router.get('/cellars', ctrlCellars.listCellars);
 router.post('/cellars', ctrlCellars.createCellars);
