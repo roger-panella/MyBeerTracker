@@ -91,5 +91,21 @@ module.exports.updateOneCellar = function(req, res) {
       };
 
 module.exports.deleteOneCellar = function(req, res) {
-  jsonResponse(res, 200, {"status" : "success"});
-};
+  var cellarid = req.params.cellarid;
+  if (cellarid) {
+    Cellar.findByIdAndRemove(cellarid)
+          .exec(
+            function(err, cellar){
+              if (err) {
+                jsonResponse(res, 404, err);
+                return;
+              }
+              jsonResponse(res, 204, null);
+            }
+          );
+    } else {
+      jsonResponse(res, 404, {
+        "message": "No cellar ID in your request"
+      });
+    }
+  };

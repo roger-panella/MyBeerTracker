@@ -100,7 +100,7 @@ module.exports.listOneBeer = function(req, res) {
   };
 
 module.exports.updateOneBeer = function(req, res) {
-  if (!req.params.cellarid || !req.params.beerid) = function(req, res) {
+  if (!req.params.cellarid || !req.params.beerid) {
     jsonResponse(res, 404, {
       "message": "Not found.  Both cellar id and beer id are required"
     });
@@ -148,5 +148,44 @@ module.exports.updateOneBeer = function(req, res) {
    };
 
 module.exports.deleteOneBeer = function(req, res) {
-  jsonResponse(res, 200, {"status" : "success"});
-};
+  if (!req.params.cellarid || !req.params.beerid){
+    jsonResponse(res, 404, {
+      "message" : "Not found. Both cellar and beer ID are required"
+    });
+    return;
+  } Cellar.findById(req.params.cellarid)
+          .select('beers')
+          .exec(
+            function(err, cellar) {
+              if (!cellar) {
+                jsonResponse(res, 404, {
+                  "message": "cellar id not found"
+                });
+                return;
+              } else if(err) {
+                jsonResponse(res, 400, err);
+                return;
+              }
+              if (cellar.beers && cellar.beers.length > 0) {
+                if (!cellar.beers.id(req.params.beerid)) {
+                  jsonResponse(res, 404, {
+                    "message": "beer ID not found"
+                  });
+                } else {
+                  cellar.beers.id(req.params.beerid).remove();
+                  cellar.save(function(err){
+                    if (err) {
+                      jsonResponse(res, 404, err);
+                    } else {
+                      jsonResponse(res, 204, null);
+                    }
+                  });
+                }
+              } else {
+                jsonResponse(res, 404, {
+                  "message": "No review to delete"
+                });
+              }
+            }
+          );
+        };
