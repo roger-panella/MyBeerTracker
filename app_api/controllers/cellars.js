@@ -59,8 +59,36 @@ module.exports.listOneCellar = function (req, res) {
 };
 
 module.exports.updateOneCellar = function(req, res) {
-  jsonResponse(res, 200, {"status" : "success"});
-};
+  if (!req.params.cellarid) {
+    jsonResponse(res, 404, {
+      "message": "Cellar ID is required to update document"
+    });
+    return;
+  }
+  Cellar.findById(req.params.cellarid)
+        .select('-beers')
+        .exec(
+          function(err, cellar) {
+            if (!cellar) {
+              jsonResponse(res, 404, {
+                "message" : "That cellar id was not found"
+              });
+              return
+            } else if (err) {
+              jsonResponse(res, 400, err);
+              return;
+            }
+            cellar.username = req.body.username;
+            cellar.save(function(err, cellar) {
+              if (err) {
+                jsonResponse(res, 404, err);
+              } else {
+                jsonResponse(res, 200, cellar);
+              }
+            });
+          }
+        );
+      };
 
 module.exports.deleteOneCellar = function(req, res) {
   jsonResponse(res, 200, {"status" : "success"});
