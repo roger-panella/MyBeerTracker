@@ -25,7 +25,15 @@ module.exports.listCellars = function(req, res) {
 };
 
 module.exports.createCellars = function(req, res) {
-  jsonResponse(res, 200, {"status" : "success"});
+  Cellar.create({
+    username: req.body.username
+  }, function(err, cellar){
+    if (err) {
+      jsonResponse(res, 400, err);
+    } else {
+      jsonResponse(res, 201, cellar);
+    }
+  });
 };
 
 module.exports.listOneCellar = function (req, res) {
