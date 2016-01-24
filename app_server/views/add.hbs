@@ -13,9 +13,15 @@
         <input type="text" id="beer-search-box" value="{{beerResult}}" class="form-control">
       </fieldset>
 
+      <fieldset class="form-group">
+        <label for="exampleInputEmail1">Style</label>
+        <input type="text" id="style-search-box" value="{{beerStyle}}" class="form-control">
+      </fieldset>
+
       <script>
       document.getElementById("beer-search-box").readOnly=true;
       document.getElementById("brewery-search-box").readOnly=true;
+      document.getElementById("style-search-box").readOnly=true;
       </script>
 
       <fieldset class="form-group">

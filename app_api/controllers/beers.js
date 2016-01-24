@@ -7,7 +7,50 @@ var jsonResponse = function(res, status, content) {
 };
 
 module.exports.createBeers = function(req, res) {
-  jsonResponse(res, 200, {"status" : "success"});
+  var cellarid = req.params.cellarid;
+  if (cellarid) {
+    Cellar.findById(cellarid)
+    .select('beers')
+    .exec(
+      function(err, cellar) {
+        if (err) {
+          jsonResponse(res, 400, err);
+        } else {
+          doAddBeer(req, res, cellar);
+        }
+      }
+    );
+  } else {
+    jsonResponse(res, 404, {
+      "message": "Not found.  Cellar ID required."
+    });
+  }
+};
+
+var doAddBeer = function(req, res, cellar) {
+  if (!cellar) {
+    jsonResponse(res, 404, {
+      "message" : "No cellar ID found"
+    });
+  } else {
+    cellar.beers.push({
+      brewery: req.body.brewery,
+      beer: req.body.beer,
+      style: req.body.style,
+      date: req.body.date,
+      quantity: req.body.quantity,
+      forTrade: req.body.forTrade
+    });
+    cellar.save(function(err, cellar){
+      var thisBeer;
+      if (err) {
+        jsonResponse(res, 400, err);
+      } else {
+        thisBeer = cellar.beers[cellar.beers.length - 1];
+        jsonResponse(res, 201, thisBeer);
+      }
+    });
+  }
 };
 
 module.exports.listOneBeer = function(req, res) {

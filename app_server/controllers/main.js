@@ -101,5 +101,6 @@ module.exports.searchForBeer = function(req, res){
 module.exports.addBeer = function(req, res){
   var brewery = req.query.brewery;
   var beer = req.query.beer;
-  res.render('add', { title: 'Add Beer', breweryResult: brewery, beerResult: beer});
+  var style = req.query.style;
+  res.render('add', { title: 'Add Beer', breweryResult: brewery, beerResult: beer, beerStyle: style});
 }

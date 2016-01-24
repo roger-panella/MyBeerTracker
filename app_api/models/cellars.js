@@ -10,7 +10,7 @@ var beerSchema = new mongoose.Schema({
 });
 
 var cellarSchema = new mongoose.Schema({
-  username: String,
+  username: {type: String, required: true},
   beers: [beerSchema]
 });
 

@@ -62,6 +62,6 @@ module.exports.updateOneCellar = function(req, res) {
   jsonResponse(res, 200, {"status" : "success"});
 };
 
-module.exports.deleteOneCellar= function(req, res) {
+module.exports.deleteOneCellar = function(req, res) {
   jsonResponse(res, 200, {"status" : "success"});
 };
