@@ -1,6 +1,13 @@
 var mongoose = require('mongoose');
 var Cellar = mongoose.model('Cellar');
 
+function errorResponse(err) {
+  return {
+    message: err,
+    status: 500,
+    note: 'Whoop!  Something went wrong, here.'
+  };
+};
 
 var jsonResponse = function(res, status, content) {
   res.status(status);
@@ -8,7 +15,13 @@ var jsonResponse = function(res, status, content) {
 };
 
 module.exports.listCellars = function(req, res) {
-  jsonResponse(res, 200, {"status" : "success"});
+  Cellar.find(function(err, cellars) {
+    if (err) {
+      res.json(errorResponse(err));
+    } else {
+      res.json(cellars);
+    }
+  });
 };
 
 module.exports.createCellars = function(req, res) {
