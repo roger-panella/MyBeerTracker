@@ -14,14 +14,26 @@ module.exports.index = function(req, res){
 };
 
 var renderCellar = function(req, res, responseBody) {
+  // var message;
+  // if (responseBody.beers.length < 1) {
+  //   console.log('-----responseBody');
+  //   console.log(responseBody.beers);
+  //   message = "You need to add some beers!";
+  // }
+
   res.render('cellar', {
     title: 'Your Cellar | My Beer Tracker',
     pageHeader: {
       username: responseBody.username,
-      title: 'Cellar'
+      title: 'Cellar',
     },
-    beers: responseBody.beers
+    beers: responseBody.beers,
+    id: responseBody._id
+    // message: message
   });
+  console.log(responseBody);
+  console.log('----responseID------');
+  console.log(responseBody._id);
 };
 
 module.exports.cellar = function(req, res){
@@ -91,7 +103,8 @@ module.exports.about = function(req, res){
 };
 
 module.exports.searchForBeer = function(req, res){
-  res.render('search', { title: 'Search for a Beer'});
+  var id = req.query.id;
+  res.render('search', { title: 'Search for a Beer', userId: id});
 }
 
 module.exports.addBeer = function(req, res){

@@ -45,3 +45,4 @@ process.on('SIGTERM', function(){
 
 
 require('./cellars')
+require('./users');

@@ -71,8 +71,6 @@ function displayBeers(beerResults){
 
 
 
-
-
 // Working Code with Arrays and not OBjects!!!!
 
 // function getTenBeers(data) {
