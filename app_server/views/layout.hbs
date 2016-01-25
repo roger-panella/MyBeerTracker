@@ -30,7 +30,12 @@
             <li><a href="/browse-cellars">Browse Cellars</a></li>
           </ul>
           <ul class="nav navbar-nav" id="nav-login-button">
-            <li><a href="/" class="navbar-nav pull-right">Sign In</a>
+            {{#if user}}
+            <li>{{user.username}}</li>
+            {{else}}
+            <li><a href="/users/login">Login</a><li>
+            {{/if}}
+            <!-- <li><a href="/" class="navbar-nav pull-right">Sign In</a> -->
           <ul>
         </div>
     </nav>

@@ -10,7 +10,8 @@ if (process.env.NODE_ENV === 'production') {
 
 
 module.exports.index = function(req, res){
-  res.render('index', { title: 'Home Page'});
+  user = req.user;
+  res.render('index', { title: 'Home Page', user: req.user});
 };
 
 var renderCellar = function(req, res, responseBody) {
