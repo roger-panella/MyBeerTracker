@@ -1,49 +1,45 @@
 var request = require('request');
 
+var apiOptions = {
+  server : "http://localhost:3000"
+};
+if (process.env.NODE_ENV === 'production') {
+  apiOptions.server = "https://mysterious-spire-8549.herokuapp.com";
+}
+
+
+
 module.exports.index = function(req, res){
   res.render('index', { title: 'Home Page'});
 };
 
-module.exports.cellar = function(req, res){
+var renderCellar = function(req, res, responseBody) {
   res.render('cellar', {
     title: 'Your Cellar | My Beer Tracker',
     pageHeader: {
-      username: 'Ralph',
+      username: responseBody.username,
       title: 'Cellar'
     },
-    beers: [{
-      brewery: 'Goose Island',
-      beer: 'Bourbon County Stout',
-      style: 'American Imperial Stout',
-      date: '2014',
-      forTrade: true
-    },{
-      brewery: 'Hill Farmstead',
-      beer: 'Damon',
-      style: 'American Imperial Stout',
-      date: '2013',
-      forTrade: false
-    }, {
-      brewery: 'Cantillon',
-      beer: 'Iris',
-      style: 'Lambic',
-      date: '2013',
-      forTrade: false
-    },{
-      brewery: 'Kane',
-      beer: 'A Night to End All Dawns',
-      style: 'American Imperial Stout',
-      date: '2015',
-      forTrade: true
-    },{
-      brewery: 'SARA',
-      beer: 'Saison Bernice',
-      style: 'Saison',
-      date: '2015',
-      forTrade: true
-    }]
+    beers: responseBody.beers
   });
 };
+
+module.exports.cellar = function(req, res){
+  var requestOptions, path;
+  path = '/api/cellars/56a1386226ce6eaf0ae8ef60';
+  requestOptions = {
+    url : apiOptions.server + path,
+    method : "GET",
+    json : {},
+  };
+  request (
+    requestOptions,
+    function(err, response, body) {
+      renderCellar(req, res, body);
+    }
+  );
+};
+
 
 module.exports.publicCellar = function(req, res){
   res.render('public_cellar', {
