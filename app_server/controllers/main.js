@@ -1,4 +1,7 @@
 var request = require('request');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 
 var apiOptions = {
   server : "http://localhost:3000"
@@ -44,7 +47,7 @@ var renderCellar = function(req, res, responseBody) {
 };
 
 module.exports.cellar = function(req, res){
-  user = req.user;
+  user: req.user;
   var requestOptions, path;
   path = '/api/users/' + req.user.id;
   requestOptions = {
@@ -62,45 +65,51 @@ module.exports.cellar = function(req, res){
 
 
 module.exports.publicCellar = function(req, res){
-  req.user;
-  res.render('public_cellar', {
-    title: 'User\'s Public Cellar | My Beer Tracker',
-    pageHeader: {
-      username: 'Ralph',
-      title: 'Cellar'
-    },
-    beers: [{
-      brewery: 'Goose Island',
-      beer: 'Bourbon County Stout',
-      style: 'American Imperial Stout',
-      date: '2014',
-      forTrade: true
-    },{
-      brewery: 'Hill Farmstead',
-      beer: 'Damon',
-      style: 'American Imperial Stout',
-      date: '2013',
-      forTrade: false
-    }, {
-      brewery: 'Cantillon',
-      beer: 'Iris',
-      style: 'Lambic',
-      date: '2013',
-      forTrade: false
-    },{
-      brewery: 'Kane',
-      beer: 'A Night to End All Dawns',
-      style: 'American Imperial Stout',
-      date: '2015',
-      forTrade: true
-    },{
-      brewery: 'SARA',
-      beer: 'Saison Bernice',
-      style: 'Saison',
-      date: '2015',
-      forTrade: true
-    }]
-  });
+  if (req.user) {
+    console.log('----req.session');
+    console.log(req.session);
+    // passport.authenticate('local'),
+    res.render('public_cellar', {
+      title: 'User\'s Public Cellar | My Beer Tracker',
+      pageHeader: {
+        username: 'Ralph',
+        title: 'Cellar'
+      },
+      beers: [{
+        brewery: 'Goose Island',
+        beer: 'Bourbon County Stout',
+        style: 'American Imperial Stout',
+        date: '2014',
+        forTrade: true
+      },{
+        brewery: 'Hill Farmstead',
+        beer: 'Damon',
+        style: 'American Imperial Stout',
+        date: '2013',
+        forTrade: false
+      }, {
+        brewery: 'Cantillon',
+        beer: 'Iris',
+        style: 'Lambic',
+        date: '2013',
+        forTrade: false
+      },{
+        brewery: 'Kane',
+        beer: 'A Night to End All Dawns',
+        style: 'American Imperial Stout',
+        date: '2015',
+        forTrade: true
+      },{
+        brewery: 'SARA',
+        beer: 'Saison Bernice',
+        style: 'Saison',
+        date: '2015',
+        forTrade: true
+      }]
+    });
+} else {
+  res.redirect('/');
+}
 };
 
 module.exports.browseCellars = function(req, res){

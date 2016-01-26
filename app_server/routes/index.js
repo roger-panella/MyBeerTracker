@@ -3,6 +3,7 @@ var router = express.Router();
 var ctrlMain = require('../controllers/main');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+// passport.authenticate('local', {failureFlash: 'Invalid username or password'});
 
 // passport.use(new LocalStrategy(User.authenticate()));
 // passport.serializeUser(User.serializeUser());
@@ -11,7 +12,10 @@ var LocalStrategy = require('passport-local').Strategy;
 /* GET home page. */
 router.get('/', ctrlMain.index);
 router.get('/cellar', ctrlMain.cellar);
-router.get('/public-cellar', passport.authenticate('local', {failureRedirect: '/'}),ctrlMain.publicCellar);
+router.get('/public-cellar', ctrlMain.publicCellar);
+// router.get('/public-cellar', passport.authenticate('local', {
+//   successRedirect: '/public-cellar', failureRedirect: '/'
+// }), ctrlMain.publicCellar);
 router.get('/about', ctrlMain.about);
 router.get('/browse-cellars', ctrlMain.browseCellars);
 router.get('/search', ctrlMain.searchForBeer);
