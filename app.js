@@ -24,7 +24,7 @@ hbs.registerHelper("showUsers", function(users){
     var nameVal = users[inc][name];
     console.log(nameVal);
     // usersList.push(name);
-    var li = "<li><a href=api/users/"+nameVal+">" + name + "</a></li>";
+    var li = "<li><a href=/public_cellar?id="+nameVal+">" + name + "</a></li>";
     ul = ul + li;
   }
   // console.log(usersList);

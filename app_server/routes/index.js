@@ -12,10 +12,7 @@ var LocalStrategy = require('passport-local').Strategy;
 /* GET home page. */
 router.get('/', ctrlMain.index);
 router.get('/cellar', ctrlMain.cellar);
-router.get('/public-cellar', ctrlMain.publicCellar);
-// router.get('/public-cellar', passport.authenticate('local', {
-//   successRedirect: '/public-cellar', failureRedirect: '/'
-// }), ctrlMain.publicCellar);
+router.get('/public_cellar', ctrlMain.publicCellar);
 router.get('/about', ctrlMain.about);
 router.get('/browse-cellars', ctrlMain.browseCellars);
 router.get('/search', ctrlMain.searchForBeer);

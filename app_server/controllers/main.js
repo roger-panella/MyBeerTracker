@@ -59,53 +59,88 @@ module.exports.cellar = function(req, res){
   }
 };
 
+
 module.exports.publicCellar = function(req, res){
   if (req.user) {
-    console.log('----req.session');
-    console.log(req.session);
-    // passport.authenticate('local'),
-    res.render('public_cellar', {
-      title: 'User\'s Public Cellar | My Beer Tracker',
-      pageHeader: {
-        username: 'Ralph',
-        title: 'Cellar'
-      },
-      beers: [{
-        brewery: 'Goose Island',
-        beer: 'Bourbon County Stout',
-        style: 'American Imperial Stout',
-        date: '2014',
-        forTrade: true
-      },{
-        brewery: 'Hill Farmstead',
-        beer: 'Damon',
-        style: 'American Imperial Stout',
-        date: '2013',
-        forTrade: false
-      }, {
-        brewery: 'Cantillon',
-        beer: 'Iris',
-        style: 'Lambic',
-        date: '2013',
-        forTrade: false
-      },{
-        brewery: 'Kane',
-        beer: 'A Night to End All Dawns',
-        style: 'American Imperial Stout',
-        date: '2015',
-        forTrade: true
-      },{
-        brewery: 'SARA',
-        beer: 'Saison Bernice',
-        style: 'Saison',
-        date: '2015',
-        forTrade: true
-      }]
-    });
+  var requestOptions, path;
+  console.log('/api/users/'+req.query.id);
+  path = '/api/users/' + req.query.id;
+  requestOptions = {
+    url : apiOptions.server + path,
+    method : "GET",
+    json : {},
+  };
+  request (
+    requestOptions,
+    function(err, response, body) {
+      renderPublicCellar(req, res, body);
+    }
+  );
 } else {
-  res.redirect('/');
-}
+  res.redirect('/users/login');
+  }
 };
+
+var renderPublicCellar = function(req, res, responseBody) {
+  res.render('public_cellar', {
+    // user: req.user,
+    title:  responseBody.username+"'s Cellar | My Beer Tracker",
+    pageHeader: {
+      username: responseBody.username,
+      title: 'Cellar',
+    },
+    beers: responseBody.beers
+    // id: responseBody._id
+    // message: message
+  });
+};
+// module.exports.publicCellar = function(req, res){
+//   if (req.user) {
+//     console.log('----req.session');
+//     console.log(req.session);
+//     // passport.authenticate('local'),
+//     res.render('public_cellar', {
+//       title: 'User\'s Public Cellar | My Beer Tracker',
+//       pageHeader: {
+//         username: 'Ralph',
+//         title: 'Cellar'
+//       },
+//       beers: [{
+//         brewery: 'Goose Island',
+//         beer: 'Bourbon County Stout',
+//         style: 'American Imperial Stout',
+//         date: '2014',
+//         forTrade: true
+//       },{
+//         brewery: 'Hill Farmstead',
+//         beer: 'Damon',
+//         style: 'American Imperial Stout',
+//         date: '2013',
+//         forTrade: false
+//       }, {
+//         brewery: 'Cantillon',
+//         beer: 'Iris',
+//         style: 'Lambic',
+//         date: '2013',
+//         forTrade: false
+//       },{
+//         brewery: 'Kane',
+//         beer: 'A Night to End All Dawns',
+//         style: 'American Imperial Stout',
+//         date: '2015',
+//         forTrade: true
+//       },{
+//         brewery: 'SARA',
+//         beer: 'Saison Bernice',
+//         style: 'Saison',
+//         date: '2015',
+//         forTrade: true
+//       }]
+//     });
+// } else {
+//   res.redirect('/');
+// }
+// };
 
 module.exports.browseCellars = function(req, res){
   var requestOptions, path;
@@ -128,13 +163,8 @@ module.exports.browseCellars = function(req, res){
 
     for (var i = 0;i < responseBody.length;i++){
       var userObject = {};
-      // users.push(responseBody[i].username);
       userObject[responseBody[i].username] = responseBody[i]._id;
       users.push(userObject);
-      console.log('---I SHOULD BE AN ARRAY OF USER OBJECTS');
-      console.log(users);
-      console.log('---I SHOULD BE AN ARRAY OF USER OBJECTS');
-      // console.log(responseBody[i].username + 'loop');
     }
    res.render('browse_cellars', {
      user: req.user,
@@ -145,15 +175,7 @@ module.exports.browseCellars = function(req, res){
        browseUsers: users,
      },
        beers: responseBody.beers
-    //  users: repsonseBody.user,
-    //  id: responseBody._id
     });
-
-    //  console.log('----responseBody');
-    //  console.log(responseBody);
-    //  console.log('----responseBodyusername---');
-    //  console.log(responseBody[0].username);
-    //  console.log(responseBody[1].username);
  };
 
 
