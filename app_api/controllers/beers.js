@@ -50,7 +50,8 @@ var doAddBeer = function(req, res, user) {
               jsonResponse(res, 400, err);
              } else {
                thisBeer = user.beers[user.beers.length - 1];
-               jsonResponse(res, 201, thisBeer);
+               res.redirect('/cellar');
+              //  jsonResponse(res, 201, thisBeer);
               }
            });
          }
@@ -103,6 +104,7 @@ module.exports.listOneBeer = function(req, res) {
   };
 
 module.exports.updateOneBeer = function(req, res) {
+  req.user;
   if (!req.params.userid || !req.params.beerid) {
     jsonResponse(res, 404, {
       "message": "Not found.  Both user id and beer id are required"
@@ -138,6 +140,7 @@ module.exports.updateOneBeer = function(req, res) {
                   jsonResponse(res, 404, err);
                 } else {
                   jsonResponse(res, 200, thisBeer);
+                  // res.redirect('/cellar');
                 }
               });
             }

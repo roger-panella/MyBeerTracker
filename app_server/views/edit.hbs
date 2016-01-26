@@ -1,0 +1,58 @@
+<h1>{{title}}</h1>
+
+
+  <div id="add-beer-container">
+    <!-- <form> -->
+      <form action="api/users/{{user._id}}/beers/{{beerid}}">
+      <input type="hidden" name="_method" value="PUT">
+      <fieldset class="form-group">
+        <label for="exampleInputEmail1">Brewery</label>
+        <input type="text" name="brewery" id="brewery-search-box" value="{{breweryResult}}" class="form-control">
+      </fieldset>
+
+      <fieldset class="form-group">
+        <label for="exampleInputEmail1">Beer</label>
+        <input type="text" name="beer" id="beer-search-box" value="{{beerResult}}" class="form-control">
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="exampleInputEmail1">Style</label>
+        <input type="text" name="style" id="style-search-box" value="{{beerStyle}}" class="form-control">
+      </fieldset>
+
+      <script>
+      document.getElementById("beer-search-box").readOnly=true;
+      document.getElementById("brewery-search-box").readOnly=true;
+      document.getElementById("style-search-box").readOnly=true;
+      </script>
+
+      <fieldset class="form-group">
+        <label for="inputDate">Date</label>
+        <input type="Text" name="date" class="form-control" id="inputBeerDate" value="{{beerDate}}" placeholder="bottling date or vintage">
+      </fieldset>
+
+      <fieldset class="form-group">
+        <label for="inputDate">Qty.</label>
+        <input type="Text" name="quantity" class="form-control" id="inputBeerQuantity" value="{{beerQuantity}}" placeholder="How much you got?">
+      </fieldset>
+
+      <fieldset class="form-group">
+        <label for="exampleSelect1">For Trade?</label>
+        <select class="form-control" name="forTrade" value="{{beerForTrade}}" id="exampleSelect1">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </fieldset>
+
+      <button type="submit" class="btn btn-primary" id="add-button">Submit Edits</button>
+        </form>
+        {{req.user}}
+    <!-- </form> -->
+  </div>
+
+  <div id="beer-results">
+  </div>
+
+  <script>
+
+
+  </script>

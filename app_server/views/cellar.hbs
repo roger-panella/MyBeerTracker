@@ -26,7 +26,7 @@
               <td>{{this.date}}</td>
               <td>{{this.quantity}}</td>
               <td>{{getForTrade this.forTrade}}</td>
-              <td><a href="/add?brewery={{this.brewery}}&beer={{this.beer}}&style={{this.style}}&date={{this.date}}&quantity={{this.quantity}}&forTrade={{this.forTrade}}" id="edit-beer-link"><span class="glyphicon glyphicon-pencil"></span></td>
+              <td><a href="/edit?brewery={{this.brewery}}&beer={{this.beer}}&style={{this.style}}&date={{this.date}}&quantity={{this.quantity}}&forTrade={{this.forTrade}}&id={{this._id}}&user={{id}}" id="edit-beer-link"><span class="glyphicon glyphicon-pencil"></span></td>
             </tr>
             {{/each}}
           </table>

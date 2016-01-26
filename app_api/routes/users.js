@@ -17,6 +17,7 @@ router.get('/login', function(req, res){
 
 router.post('/login', passport.authenticate('local', { failureRedirect: '/users'}),
   function(req, res) {
+    console.log('im getting here');
     res.redirect('/cellar');
   }
 );

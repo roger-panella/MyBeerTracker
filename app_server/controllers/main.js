@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
 var isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
   return next();
-  res.redirect('/users/login');
+  res.redirect('/users/register');
 }
 
 
@@ -62,6 +62,7 @@ module.exports.cellar = function(req, res){
 
 
 module.exports.publicCellar = function(req, res){
+  req.user;
   res.render('public_cellar', {
     title: 'User\'s Public Cellar | My Beer Tracker',
     pageHeader: {
@@ -131,5 +132,27 @@ module.exports.addBeer = function(req, res){
     beerDate: date,
     beerQuantity: quantity,
     beerForTrade: forTrade
+  });
+}
+
+module.exports.editBeer = function(req, res){
+  var brewery = req.query.brewery;
+  var beer = req.query.beer;
+  var style = req.query.style;
+  var date = req.query.date;
+  var quantity = req.query.quantity;
+  var forTrade = req.query.forTrade;
+  var beerId = req.query.id;
+  var userId = req.user.id;
+  res.render('edit', {
+    title: 'Edit Beer',
+    user: req.user,
+    breweryResult: brewery,
+    beerResult: beer,
+    beerStyle: style,
+    beerDate: date,
+    beerQuantity: quantity,
+    beerForTrade: forTrade,
+    beerid: beerId
   });
 }
