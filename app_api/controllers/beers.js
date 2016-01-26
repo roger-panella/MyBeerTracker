@@ -29,6 +29,7 @@ module.exports.createBeers = function (req, res) {
      };
    };
 
+
 var doAddBeer = function(req, res, user) {
   if (!user) {
     jsonResponse(res, 404, {

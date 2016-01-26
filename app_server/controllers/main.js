@@ -7,10 +7,15 @@ if (process.env.NODE_ENV === 'production') {
   apiOptions.server = "https://mysterious-spire-8549.herokuapp.com";
 }
 
+var isAuthenticated = function (req, res, next) {
+  if (req.isAuthenticated())
+  return next();
+  res.redirect('/users/login');
+}
 
 
 module.exports.index = function(req, res){
-  user = req.user;
+  req.user;
   res.render('index', { title: 'Home Page', user: req.user});
 };
 
@@ -23,6 +28,7 @@ var renderCellar = function(req, res, responseBody) {
   // }
 
   res.render('cellar', {
+    user: req.user,
     title: 'Your Cellar | My Beer Tracker',
     pageHeader: {
       username: responseBody.username,
@@ -97,21 +103,33 @@ module.exports.publicCellar = function(req, res){
 };
 
 module.exports.browseCellars = function(req, res){
-  res.render('browse_cellars', { title: 'Browse Cellars'});
+  res.render('browse_cellars', { title: 'Browse Cellars', user: req.user});
 };
 
 module.exports.about = function(req, res){
-  res.render('about', { title: 'About My Beer Tracker'});
+  res.render('about', { title: 'About My Beer Tracker', user: req.user});
 };
 
 module.exports.searchForBeer = function(req, res){
-  var id = req.query.id;
-  res.render('search', { title: 'Search for a Beer', userId: id});
+  user = req.user;
+  res.render('search', { title: 'Search for a Beer', user: req.user});
 }
 
 module.exports.addBeer = function(req, res){
   var brewery = req.query.brewery;
   var beer = req.query.beer;
   var style = req.query.style;
-  res.render('add', { title: 'Add Beer', breweryResult: brewery, beerResult: beer, beerStyle: style});
+  var date = req.query.date;
+  var quantity = req.query.quantity;
+  var forTrade = req.query.forTrade;
+  res.render('add', {
+    title: 'Add Beer',
+    user: req.user,
+    breweryResult: brewery,
+    beerResult: beer,
+    beerStyle: style,
+    beerDate: date,
+    beerQuantity: quantity,
+    beerForTrade: forTrade
+  });
 }
