@@ -38,8 +38,9 @@ var renderCellar = function(req, res, responseBody) {
 };
 
 module.exports.cellar = function(req, res){
+  user = req.user;
   var requestOptions, path;
-  path = '/api/cellars/56a1386226ce6eaf0ae8ef60';
+  path = '/api/users/' + req.user.id;
   requestOptions = {
     url : apiOptions.server + path,
     method : "GET",

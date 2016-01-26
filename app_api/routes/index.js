@@ -1,17 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var ctrlCellars = require('../controllers/cellars');
+var ctrlUsers = require('../controllers/users');
 var ctrlBeers = require('../controllers/beers');
 
-router.get('/cellars', ctrlCellars.listCellars);
-router.post('/cellars', ctrlCellars.createCellars);
-router.get('/cellars/:cellarid', ctrlCellars.listOneCellar);
-router.put('/cellars/:cellarid', ctrlCellars.updateOneCellar);
-router.delete('/cellars/:cellarid', ctrlCellars.deleteOneCellar);
+router.get('/users', ctrlUsers.listUsers);
+// router.post('/cellars', ctrlUsers.createCellars);
+router.get('/users/:userid', ctrlUsers.listOneUser);
+router.put('/users/:userid', ctrlUsers.updateOneUser);
+router.delete('/users/:userid', ctrlUsers.deleteOneUser);
 
-router.post('/cellars/:cellarid/beers', ctrlBeers.createBeers);
-router.get('/cellars/:cellarid/beers/:beerid', ctrlBeers.listOneBeer);
-router.put('/cellars/:cellarid/beers/:beerid', ctrlBeers.updateOneBeer);
-router.delete('/cellars/:cellarid/beers/:beerid', ctrlBeers.deleteOneBeer);
+router.post('/users/:userid/beers', ctrlBeers.createBeers);
+router.get('/users/:userid/beers/:beerid', ctrlBeers.listOneBeer);
+router.put('/users/:userid/beers/:beerid', ctrlBeers.updateOneBeer);
+router.delete('/users/:userid/beers/:beerid', ctrlBeers.deleteOneBeer);
 
 module.exports = router;
