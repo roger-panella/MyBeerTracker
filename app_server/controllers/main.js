@@ -23,13 +23,6 @@ module.exports.index = function(req, res){
 };
 
 var renderCellar = function(req, res, responseBody) {
-  // var message;
-  // if (responseBody.beers.length < 1) {
-  //   console.log('-----responseBody');
-  //   console.log(responseBody.beers);
-  //   message = "You need to add some beers!";
-  // }
-
   res.render('cellar', {
     user: req.user,
     title: 'Your Cellar | My Beer Tracker',
@@ -47,7 +40,7 @@ var renderCellar = function(req, res, responseBody) {
 };
 
 module.exports.cellar = function(req, res){
-  user: req.user;
+  if (req.user) {
   var requestOptions, path;
   path = '/api/users/' + req.user.id;
   requestOptions = {
@@ -61,8 +54,10 @@ module.exports.cellar = function(req, res){
       renderCellar(req, res, body);
     }
   );
+} else {
+  res.redirect('/users/login');
+  }
 };
-
 
 module.exports.publicCellar = function(req, res){
   if (req.user) {
@@ -113,8 +108,64 @@ module.exports.publicCellar = function(req, res){
 };
 
 module.exports.browseCellars = function(req, res){
-  res.render('browse_cellars', { title: 'Browse Cellars', user: req.user});
+  var requestOptions, path;
+  path = '/api/users'
+  requestOptions = {
+    url : apiOptions.server + path,
+    method : "GET",
+    json : {},
+  };
+  request (
+    requestOptions,
+    function(err, response, body){
+      renderUsers(req, res, body);
+    }
+  );
 };
+
+ var renderUsers = function(req, res, responseBody) {
+    var users = [];
+
+    for (var i = 0;i < responseBody.length;i++){
+      var userObject = {};
+      // users.push(responseBody[i].username);
+      userObject[responseBody[i].username] = responseBody[i]._id;
+      users.push(userObject);
+      console.log('---I SHOULD BE AN ARRAY OF USER OBJECTS');
+      console.log(users);
+      console.log('---I SHOULD BE AN ARRAY OF USER OBJECTS');
+      // console.log(responseBody[i].username + 'loop');
+    }
+   res.render('browse_cellars', {
+     user: req.user,
+     title: 'Browse Cellars | My Beer Tracker',
+     pageHeader: {
+       username: responseBody.username,
+       title: "Browse Cellars",
+       browseUsers: users,
+     },
+       beers: responseBody.beers
+    //  users: repsonseBody.user,
+    //  id: responseBody._id
+    });
+
+    //  console.log('----responseBody');
+    //  console.log(responseBody);
+    //  console.log('----responseBodyusername---');
+    //  console.log(responseBody[0].username);
+    //  console.log(responseBody[1].username);
+ };
+
+
+
+
+
+
+
+
+
+//   res.render('browse_cellars', { title: 'Browse Cellars', user: req.user});
+// };
 
 module.exports.about = function(req, res){
   res.render('about', { title: 'About My Beer Tracker', user: req.user});

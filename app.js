@@ -5,8 +5,35 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
-var mongoose = require('mongoose');
 
+hbs.registerHelper("getForTrade", function(forTrade){
+  if (forTrade == true) {
+    return 'Yes';
+  } else if (forTrade == false) {
+    return 'No';
+  }
+});
+
+hbs.registerHelper("showUsers", function(users){
+  // var usersList = [];
+  var ul = "<ul>";
+  for (var inc = 0; inc < users.length; inc++) {
+    console.log('---users----');
+    console.log(users);
+    var name = Object.keys(users[inc])[0];
+    var nameVal = users[inc][name];
+    console.log(nameVal);
+    // usersList.push(name);
+    var li = "<li><a href=api/users/"+nameVal+">" + name + "</a></li>";
+    ul = ul + li;
+  }
+  // console.log(usersList);
+  ul = ul + "</ul>";
+  console.log(ul);
+  return new hbs.SafeString(ul);
+});
+
+var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 require('./app_api/models/db');
@@ -35,13 +62,7 @@ passport.deserializeUser(User.deserializeUser());
 app.set('views', path.join(__dirname,'app_server', 'views'));
 app.set('view engine', 'hbs');
 
-hbs.registerHelper("getForTrade", function(forTrade){
-  if (forTrade == true) {
-    return 'Yes';
-  } else if (forTrade == false) {
-    return 'No';
-  }
-});
+
 
 // hsb.registerHelper("testy", function(data) {
 //
