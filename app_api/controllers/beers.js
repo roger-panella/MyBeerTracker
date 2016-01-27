@@ -6,7 +6,6 @@ var jsonResponse = function(res, status, content) {
   res.json(content);
 };
 
-
 module.exports.createBeers = function (req, res) {
   var userid = req.params.userid;
   if (userid) {
@@ -28,7 +27,6 @@ module.exports.createBeers = function (req, res) {
        });
      };
    };
-
 
 var doAddBeer = function(req, res, user) {
   if (!user) {
