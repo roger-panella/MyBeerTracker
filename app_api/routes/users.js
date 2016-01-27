@@ -15,7 +15,7 @@ router.get('/login', function(req, res){
     res.render('login', { user: req.user });
 });
 
-router.post('/login', passport.authenticate('local', { failureRedirect: '/users'}),
+router.post('/login', passport.authenticate('local', { failureRedirect: '/users/login', message: "Whoops! something went wrong.  Let\'s try again."}),
   function(req, res) {
     console.log('im getting here');
     res.redirect('/cellar');
@@ -37,7 +37,7 @@ router.post('/register', function(req, res){
     req.body.password,
     function(err, user) {
       if (err) {
-        return res.render('register', {  user: user });
+        return res.render('register', {  user: user, message: "Whoops!  Something went wrong.  Let\'s try again." });
       }
       passport.authenticate('local')(req, res, function(){
         res.redirect('/cellar');
