@@ -19,7 +19,7 @@ var isAuthenticated = function (req, res, next) {
 
 module.exports.index = function(req, res){
   req.user;
-  res.render('index', { title: 'Home Page', user: req.user});
+  res.render('index', { title: 'My Beer Tracker', user: req.user});
 };
 
 var renderCellar = function(req, res, responseBody) {
@@ -94,53 +94,6 @@ var renderPublicCellar = function(req, res, responseBody) {
     // message: message
   });
 };
-// module.exports.publicCellar = function(req, res){
-//   if (req.user) {
-//     console.log('----req.session');
-//     console.log(req.session);
-//     // passport.authenticate('local'),
-//     res.render('public_cellar', {
-//       title: 'User\'s Public Cellar | My Beer Tracker',
-//       pageHeader: {
-//         username: 'Ralph',
-//         title: 'Cellar'
-//       },
-//       beers: [{
-//         brewery: 'Goose Island',
-//         beer: 'Bourbon County Stout',
-//         style: 'American Imperial Stout',
-//         date: '2014',
-//         forTrade: true
-//       },{
-//         brewery: 'Hill Farmstead',
-//         beer: 'Damon',
-//         style: 'American Imperial Stout',
-//         date: '2013',
-//         forTrade: false
-//       }, {
-//         brewery: 'Cantillon',
-//         beer: 'Iris',
-//         style: 'Lambic',
-//         date: '2013',
-//         forTrade: false
-//       },{
-//         brewery: 'Kane',
-//         beer: 'A Night to End All Dawns',
-//         style: 'American Imperial Stout',
-//         date: '2015',
-//         forTrade: true
-//       },{
-//         brewery: 'SARA',
-//         beer: 'Saison Bernice',
-//         style: 'Saison',
-//         date: '2015',
-//         forTrade: true
-//       }]
-//     });
-// } else {
-//   res.redirect('/');
-// }
-// };
 
 module.exports.browseCellars = function(req, res){
   var requestOptions, path;

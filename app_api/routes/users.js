@@ -36,7 +36,7 @@ router.post('/register', function(req, res){
         return res.render('register', {  user: user });
       }
       passport.authenticate('local')(req, res, function(){
-        res.redirect('/');
+        res.redirect('/cellar');
       });
     });
 });
