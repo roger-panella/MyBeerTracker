@@ -23,7 +23,11 @@ router.post('/login', passport.authenticate('local', { failureRedirect: '/users'
 );
 
 router.get('/register', function(req, res){
-    res.render('register', { user: req.user });
+    if (req.user) {
+      res.redirect('/cellar');
+  } else {
+      res.render('register', { user: req.user });
+  }
 });
 
 router.post('/register', function(req, res){
