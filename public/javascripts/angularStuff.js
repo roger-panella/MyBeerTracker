@@ -1,11 +1,18 @@
-var beerTracker = angular.module('beerTracker',[]);
+angular.module('beerTracker',[]);
 
-beerTracker.config(function($interpolateProvider){
+angular.module('beerTracker').config(function($interpolateProvider){
     $interpolateProvider.startSymbol('//');
     $interpolateProvider.endSymbol('//');
 });
 
-function hello () {
-  console.log('this page is working!');
+var myController = function($scope){
+  $scope.myInput = "what up!";
 };
-hello();
+
+angular.module('beerTracker').controller('myController', myController);
+
+var cellarCtrl = function ($scope) {
+  $scope.
+});
+
+angular.module('beerTracker').controller('cellarCtrl',cellarCtrl);

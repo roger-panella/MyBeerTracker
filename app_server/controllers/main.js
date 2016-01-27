@@ -22,6 +22,9 @@ module.exports.index = function(req, res){
   res.render('index', { title: 'My Beer Tracker', user: req.user});
 };
 
+
+// REAL RENDER CELLAR FUNCTION FOR CELLAR CONTROLLER !!!!!!
+
 var renderCellar = function(req, res, responseBody) {
   res.render('cellar', {
     user: req.user,
@@ -39,6 +42,7 @@ var renderCellar = function(req, res, responseBody) {
   console.log(responseBody._id);
 };
 
+// REAL CELLAR CONTROLLER!!!
 module.exports.cellar = function(req, res){
   if (req.user) {
   var requestOptions, path;

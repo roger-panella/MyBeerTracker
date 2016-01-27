@@ -2,7 +2,7 @@
 <h1>{{pageHeader.username}}'s {{pageHeader.title}}</h1>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-8 col-xs-12">
+      <div ng-controller="cellarCtrl" class="col-md-8 col-xs-12">
         <div id='cellar-list-container'>
           <form method="get" action='search?id={{id}}'>
             <button <a href='search?id={{id}}' type="submit" id="add-beer-btn" class="btn btn-primary"></a>Add a Beer</button>
