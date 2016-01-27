@@ -1,7 +1,22 @@
 <h1>Register</h1>
 
-<form action="/users/register" method="post">
-  <input type="text" name="username" value="" placeholder="Your Username">
-  <input type="password" name="password" value="" placeholder="Your Password">
-  <input type="submit" value="Create Account">
-</form>
+
+<div id="register-form-container">
+
+
+  <form action="/users/register" method="post">
+
+    <fieldset class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" name="username" placeholder="Your Username">
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" placeholder="Your Password">
+    </fieldset>
+
+     <button id="register-button" class="btn btn-primary" type="submit">Register</button>
+  </form>
+
+</div>

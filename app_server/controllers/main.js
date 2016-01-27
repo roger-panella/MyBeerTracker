@@ -131,17 +131,6 @@ module.exports.browseCellars = function(req, res){
     });
  };
 
-
-
-
-
-
-
-
-
-//   res.render('browse_cellars', { title: 'Browse Cellars', user: req.user});
-// };
-
 module.exports.about = function(req, res){
   res.render('about', { title: 'About My Beer Tracker', user: req.user});
 };
