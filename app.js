@@ -16,7 +16,7 @@ hbs.registerHelper("getForTrade", function(forTrade){
 
 hbs.registerHelper("showUsers", function(users){
   // var usersList = [];
-  var ul = "<ul>";
+  var ul = "<ul id='cellars-list'>";
   for (var inc = 0; inc < users.length; inc++) {
     console.log('---users----');
     console.log(users);
@@ -24,7 +24,7 @@ hbs.registerHelper("showUsers", function(users){
     var nameVal = users[inc][name];
     console.log(nameVal);
     // usersList.push(name);
-    var li = "<li><a href=/public_cellar?id="+nameVal+">" + name + "</a></li>";
+    var li = "<li id='user-public'><a href=/public_cellar?id="+nameVal+">" + name + "</a></li>";
     ul = ul + li;
   }
   // console.log(usersList);
