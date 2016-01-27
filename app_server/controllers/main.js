@@ -83,7 +83,7 @@ module.exports.publicCellar = function(req, res){
 
 var renderPublicCellar = function(req, res, responseBody) {
   res.render('public_cellar', {
-    // user: req.user,
+    user: req.user,
     title:  responseBody.username+"'s Cellar | My Beer Tracker",
     pageHeader: {
       username: responseBody.username,
