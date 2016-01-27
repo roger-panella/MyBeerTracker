@@ -27,7 +27,6 @@ hbs.registerHelper("showUsers", function(users){
     var li = "<li id='user-public'><a href=/public_cellar?id="+nameVal+">" + name + "</a></li>";
     ul = ul + li;
   }
-  // console.log(usersList);
   ul = ul + "</ul>";
   console.log(ul);
   return new hbs.SafeString(ul);
@@ -76,6 +75,8 @@ app.set('view engine', 'hbs');
 //
 //
 // });
+
+// commented out for angular!!!
 
 hbs.registerHelper("getStylesForSort", function(beers){
   var stylesForSort = [];

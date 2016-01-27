@@ -25,44 +25,58 @@ module.exports.index = function(req, res){
 
 // REAL RENDER CELLAR FUNCTION FOR CELLAR CONTROLLER !!!!!!
 
-var renderCellar = function(req, res, responseBody) {
+// var renderCellar = function(req, res, responseBody) {
+//   res.render('cellar', {
+//     user: req.user,
+//     title: 'Your Cellar | My Beer Tracker',
+//     pageHeader: {
+//       username: responseBody.username,
+//       title: 'Cellar',
+//     },
+//     beers: responseBody.beers,
+//     id: responseBody._id
+//   });
+// };
+
+// REAL CELLAR CONTROLLER!!!
+// module.exports.cellar = function(req, res){
+//   if (req.user) {
+//   var requestOptions, path;
+//   path = '/api/users/' + req.user.id;
+//   requestOptions = {
+//     url : apiOptions.server + path,
+//     method : "GET",
+//     json : {},
+//   };
+//   request (
+//     requestOptions,
+//     function(err, response, body) {
+//       renderCellar(req, res, body);
+//     }
+//   );
+// } else {
+//   res.redirect('/users/login');
+//   }
+// };
+
+module.exports.cellar = function(req, res) {
+  renderCellar(req, res);
+};
+
+// var renderCellar = function(req, res, responseBody) {   with ResponseBody(api) data
+var renderCellar = function(req, res) {
   res.render('cellar', {
     user: req.user,
     title: 'Your Cellar | My Beer Tracker',
     pageHeader: {
-      username: responseBody.username,
-      title: 'Cellar',
+      // username: responseBody.username,                   with API data
+      username: 'Roger',
+      title: 'Cellar'
     },
-    beers: responseBody.beers,
-    id: responseBody._id
-    // message: message
+    // beers: responseBody.beers,                           with API data
+    // id: responseBody._id                                 with API data
   });
-  console.log(responseBody);
-  console.log('----responseID------');
-  console.log(responseBody._id);
 };
-
-// REAL CELLAR CONTROLLER!!!
-module.exports.cellar = function(req, res){
-  if (req.user) {
-  var requestOptions, path;
-  path = '/api/users/' + req.user.id;
-  requestOptions = {
-    url : apiOptions.server + path,
-    method : "GET",
-    json : {},
-  };
-  request (
-    requestOptions,
-    function(err, response, body) {
-      renderCellar(req, res, body);
-    }
-  );
-} else {
-  res.redirect('/users/login');
-  }
-};
-
 
 module.exports.publicCellar = function(req, res){
   if (req.user) {
@@ -94,8 +108,6 @@ var renderPublicCellar = function(req, res, responseBody) {
       title: 'Cellar',
     },
     beers: responseBody.beers
-    // id: responseBody._id
-    // message: message
   });
 };
 
