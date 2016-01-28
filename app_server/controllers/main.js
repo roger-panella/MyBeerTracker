@@ -23,7 +23,7 @@ module.exports.index = function(req, res){
 };
 
 
-// REAL RENDER CELLAR FUNCTION FOR CELLAR CONTROLLER !!!!!!
+//---------------------------- REAL RENDER CELLAR FUNCTION FOR CELLAR CONTROLLER !!!!!!-----------------------------------
 
 // var renderCellar = function(req, res, responseBody) {
 //   res.render('cellar', {
@@ -38,7 +38,7 @@ module.exports.index = function(req, res){
 //   });
 // };
 
-// REAL CELLAR CONTROLLER!!!
+// ------------------------------REAL CELLAR CONTROLLER!!!-------------------------------------------------------------------
 // module.exports.cellar = function(req, res){
 //   if (req.user) {
 //   var requestOptions, path;
@@ -59,19 +59,31 @@ module.exports.index = function(req, res){
 //   }
 // };
 
+
+// -------------------------------Angular cellar controller!!!!----------------------------------------------------------------
 module.exports.cellar = function(req, res) {
+  if (req.user) {
+  var apiPath = apiOptions.server + '/api/users/' + req.user.id;
   renderCellar(req, res);
+  console.log('----apiPath');
+  console.log(apiPath);
+} else {
+  res.redirect('/users/login');
+}
 };
+
+//---------------------------------Angular renderCellar function!!!-------------------------------------------------------------
 
 // var renderCellar = function(req, res, responseBody) {   with ResponseBody(api) data
 var renderCellar = function(req, res) {
   res.render('cellar', {
     user: req.user,
+    theId: req.user.id,
     title: 'Your Cellar | My Beer Tracker',
     pageHeader: {
       // username: responseBody.username,                   with API data
       username: 'Roger',
-      title: 'Cellar'
+      title: 'Cellar',
     },
     // beers: responseBody.beers,                           with API data
     // id: responseBody._id                                 with API data

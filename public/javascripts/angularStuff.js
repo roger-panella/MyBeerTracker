@@ -7,6 +7,7 @@ var yesNo = function() {
   }
 }
 
+
 // var cellarListCtrl = function ($scope) {
 //   $scope.data = {
 //     // username: 'roger',
@@ -47,8 +48,10 @@ var cellarListCtrl = function ($scope, cellarData){
   };
 
 
-var cellarData = function( $http) {
-  return $http.get('/api/users/56a704b0a22647dd3927a451');
+var cellarData = function($http) {
+  var userId = document.getElementById('userId').innerHTML;
+  console.log(userId);
+  return $http.get('/api/users/' + userId);
 }
 
 // var cellarData = function() {
