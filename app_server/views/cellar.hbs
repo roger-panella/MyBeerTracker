@@ -26,7 +26,9 @@
               <td>//beer.brewery//</td>
               <td>//beer.beer//</td>
               <td>//beer.style//</td>
-              <td>//beer.date//</td>
+              <td><label class="editing-label">//beer.date//</label></td>
+              <td><input class="editing-label" type="text"/></td>
+
               <td ng-click="editing = true">//beer.quantity//</td>
               <td>//beer.forTrade | yesNo //</td>
                <td><a href="/edit?brewery=//beer.brewery//&beer=//beer.name//&style=//beer.style//&date=//beer.date//&quantity=//beer.quantity//&forTrade=//beer.forTrade//&id={{this._id}}&user={{id}}" id="edit-beer-link"><span class="glyphicon glyphicon-pencil"></span></td>
