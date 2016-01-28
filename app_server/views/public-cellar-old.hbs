@@ -1,0 +1,41 @@
+<h1>{{pageHeader.username}}'s {{pageHeader.title}}</h1>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 col-xs-12">
+        <div id='cellar-list-container'>
+          <table class="table table-striped">
+            <tr>
+              <th>Brewery</th>
+              <th>Beer</th>
+              <th>Style</th>
+              <th>Bottling Date</th>
+              <th>For Trade?</th>
+            </tr>
+            {{#each beers}}
+            <tr>
+              <td>{{this.brewery}}</td>
+              <td>{{this.beer}}</td>
+              <td>{{this.style}}</td>
+              <td>{{this.date}}</td>
+              <td>{{getForTrade this.forTrade}}</td>
+            </tr>
+            {{/each}}
+          </table>
+         </div>
+        </div>
+
+        <div class="col-md-2 col-xs-8">
+          <div id="sort-column-container">
+            <h4>Sort</h4>
+            <table class="table table-striped">
+              {{#each beers}}
+              <tr>
+               <td><input type="checkbox"></td>
+                <td>{{this.style}}</td>
+              </tr>
+              {{/each}}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,54 @@
+<script src="angular.min.js"></script>
+<h1>{{pageHeader.username}}'s {{pageHeader.title}}</h1>
+  <div class="container-fluid">
+    <div class="row">
+      <div ng-controller="cellarCtrl" class="col-md-8 col-xs-12">
+        <div id='cellar-list-container'>
+          <form method="get" action='search?id={{id}}'>
+            <button <a href='search?id={{id}}' type="submit" id="add-beer-btn" class="btn btn-primary"></a>Add a Beer</button>
+          </form>
+          <script>
+          </script>
+          <table class="table table-striped">
+            <tr>
+              <th>Brewery</th>
+              <th>Beer</th>
+              <th>Style</th>
+              <th>Bottling Date</th>
+              <th>Qty</th>
+              <th>For Trade?</th>
+              <th>Edit</th>
+            </tr>
+            {{#each beers}}
+            <tr>
+              <td>{{this.brewery}}</td>
+              <td>{{this.beer}}</td>
+              <td>{{this.style}}</td>
+              <td>{{this.date}}</td>
+              <td>{{this.quantity}}</td>
+              <td>{{getForTrade this.forTrade}}</td>
+              <td><a href="/edit?brewery={{this.brewery}}&beer={{this.beer}}&style={{this.style}}&date={{this.date}}&quantity={{this.quantity}}&forTrade={{this.forTrade}}&id={{this._id}}&user={{id}}" id="edit-beer-link"><span class="glyphicon glyphicon-pencil"></span></td>
+            </tr>
+            {{/each}}
+          </table>
+         </div>
+        </div>
+          <!-- A link putting the user id into the url as a query parameter -->
+          <!-- <a href='search?id={{id}}'>Click</a> -->
+
+        <div class="col-md-2 col-xs-8">
+          <div id="sort-column-container">
+            <h4>Sort</h4>
+            <table class="table table-striped">
+              <!-- {{getStylesForSort beers}} -->
+              {{#each beers}}
+              <tr>
+               <td><input type="checkbox"></td>
+                <td>{{this.style}}</td>
+              </tr>
+              {{/each}}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
