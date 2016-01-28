@@ -1,8 +1,12 @@
 Untappd API info:
 
+---original stuff from cellar.hbs page before angular to do experiment----
 
 
-original td for beer date before Angular tut.
+- original edit link
+<td><a href="/edit?brewery=//beer.brewery//&beer=//beer.name//&style=//beer.style//&date=//beer.date//&quantity=//beer.quantity//&forTrade=//beer.forTrade//&id={{this._id}}&user={{id}}" id="edit-beer-link"><span class="glyphicon glyphicon-pencil"></span></td>
+
+- original td for beer date before Angular tut.
       <!-- <td>//beer.date//</td> -->
 
 

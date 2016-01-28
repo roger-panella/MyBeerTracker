@@ -20,18 +20,21 @@
               <th>Qty</th>
               <th>For Trade?</th>
               <th>Edit</th>
+              <th>Save</th>
+              <th>Delete</th>
             </tr>
 
             <tr ng-repeat="beer in data.beers | filter : textFilter">
               <td>//beer.brewery//</td>
               <td>//beer.beer//</td>
               <td>//beer.style//</td>
-              <td><label class="editing-label">//beer.date//</label></td>
-              <td><input class="editing-label" type="text"/></td>
-
-              <td ng-click="editing = true">//beer.quantity//</td>
+              <td><label ng-hide="editing" class="editing-label">//beer.date//</label><input ng-show="editing" ng-model="beer.date" id="date-edit" class="editing-label" type="text"/></td>
+              <!-- <input ng-show="editing" ng-model="beer.date" class="editing-label" type="text"/> -->
+              <td>//beer.quantity//</td>
               <td>//beer.forTrade | yesNo //</td>
-               <td><a href="/edit?brewery=//beer.brewery//&beer=//beer.name//&style=//beer.style//&date=//beer.date//&quantity=//beer.quantity//&forTrade=//beer.forTrade//&id={{this._id}}&user={{id}}" id="edit-beer-link"><span class="glyphicon glyphicon-pencil"></span></td>
+              <td><a href="" ng-click=" editing = !editing" id="edit-beer-link"><span class="glyphicon glyphicon-pencil"></span></td>
+              <td><a href="" ng-click="helloWorld()" id="edit-beer-link"><span class="glyphicon glyphicon-floppy-save"></span></td>
+              <td><a href="" class="delete" id="edit-beer-link"><span class="glyphicon glyphicon-trash"></span></td>
             </tr>
 
           </table>
