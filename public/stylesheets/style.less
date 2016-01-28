@@ -6,11 +6,20 @@ body {
 a {
   color: #00B7FF;
 }
-
+// -----------------------NAV-----------------------------------
 #nav-login-button {
   float: right;
 }
 
+// #nav-brand {
+// // font-family: 'Lobster', cursive;
+// color: black;
+// font-size: 20px;
+// font-family: wingdings;
+// }
+
+
+// ------------------------CELLAR PAGE--------------------------------
 #sort-table-heading {
   background-color: white;
 }
@@ -30,6 +39,11 @@ a {
   margin-left: 20px;
 }
 
+#edit-beer-link {
+    color:black;
+    text-decoration:none;
+}
+
 #body-container {
   padding-left: 100px;
   padding-right: 100px;
@@ -45,6 +59,18 @@ body {
   margin-bottom: 60px;
 }
 
+#add-beer-button{
+  margin-top: 10px;
+}
+
+#beer-search {
+  width: 20%;
+  height: 30px;
+}
+
+
+// ---------------------Footer--------------------------------
+
 footer{
   background-color: rgb(227, 227, 227);
   width: 100%;
@@ -56,24 +82,15 @@ footer{
   margin-top: 10px;
 }
 
-#edit-beer-link {
-    color:black;
-    text-decoration:none;
-}
+// ---------------------------Add Beer page---------------------------------------
 
 #add-beer-container {
   margin-top: 50px;
   width: 30%;
 }
 
-#add-beer-button{
-  margin-top: 10px;
-}
 
-#beer-search {
-  width: 20%;
-  height: 30px;
-}
+// --------------------------Search for Beer page-----------------------------
 
 #single-beer-result{
   border-style: solid;
@@ -101,6 +118,8 @@ footer{
   margin-top: 10%;
 }
 
+
+// --------------------------------Homepage-------------------------------------
 #homepage-top {
   background-image: url("/images/homepage-beer.JPG");
   background-size: cover;
@@ -112,7 +131,60 @@ footer{
   margin-bottom: 3em;
 }
 
-// --------------------------------Home page-------------------------------------
+#beer-pic {
+  display: block;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+#homepage-heading {
+  color: white;
+  // position: absolute;
+  float: left;
+  font-family: 'Lobster', cursive;
+  font-size: 13em;
+  margin-left: .2em;
+}
+
+#homepage-second-heading {
+  color: white;
+  display: block;
+  font-family: 'Lobster', cursive;
+  font-size: 60px;
+  margin-top: 4.5em;
+  margin-left: 1em;
+}
+
+#home-join-btn {
+    position: absolute;
+    display: block;
+    bottom: 0px;
+    margin-left: 4em;
+    margin-bottom: 7.5em;
+}
+
+// @media (max-width: 1100px), (max-height: 700px){
+//     #homepage-heading {
+//         font-size: 5em;
+//     }
+// }
+//
+// @media (max-width: 1100px){
+//     #homepage-second-heading {
+//         font-size: 25spx;
+//     }
+// }
+
+
+
+.homepage-text {
+  border: solid;
+  border-color: black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 // #homepage-top {
 //   // border-style: solid;
 //   // border-color: black;
@@ -148,60 +220,6 @@ footer{
 //   margin-left: 2.5em;
 //   margin-right: auto;
 // }
-
-#homepage-heading {
-  color: white;
-  position: absolute;
-  font-family: 'Lobster', cursive;
-  font-size: 13em;
-  margin-left: .3em;
-}
-
-#homepage-second-heading {
-  color: white;
-  position: absolute;
-  font-family: 'Lobster', cursive;
-  font-size: 60px;
-  margin-top: 300px;
-  margin-left: 1.5em;
-  margin-right: auto;
-}
-
-@media (max-width: 1100px), (max-height: 700px){
-    #homepage-heading {
-        font-size: 5em;
-    }
-}
-
-@media (max-width: 1100px){
-    #homepage-second-heading {
-        font-size: 25spx;
-    }
-}
-
-#beer-pic {
-  display: block;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-#join {
-    position: absolute;
-    display: block;
-    bottom: 0px;
-    // left: 3em;
-    // right: 10em;
-    margin-left: 4em;
-    margin-bottom: 20em;
-}
-
-.homepage-text {
-  border: solid;
-  border-color: black;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 // ---------------------Login Page------------------------
 
@@ -241,15 +259,7 @@ footer{
 }
 
 
-// ---------------------Nav Bar-----------------------
-// #nav-brand {
-// // font-family: 'Lobster', cursive;
-// color: black;
-// font-size: 20px;
-// font-family: wingdings;
-// }
-
-// -------------Browse Cellars------------------------------
+// -------------Browse Cellars Page-----------------------------
 
 #user-public {
   font-family: 'Lobster';
