@@ -18,17 +18,12 @@ hbs.registerHelper("showUsers", function(users){
   // var usersList = [];
   var ul = "<ul id='cellars-list'>";
   for (var inc = 0; inc < users.length; inc++) {
-    console.log('---users----');
-    console.log(users);
     var name = Object.keys(users[inc])[0];
     var nameVal = users[inc][name];
-    console.log(nameVal);
-    // usersList.push(name);
     var li = "<li id='user-public'><a href=/public_cellar?id="+nameVal+">" + name + "</a></li>";
     ul = ul + li;
   }
   ul = ul + "</ul>";
-  console.log(ul);
   return new hbs.SafeString(ul);
 });
 
