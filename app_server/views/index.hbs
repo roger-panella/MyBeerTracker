@@ -1,41 +1,43 @@
 <!-- <h1>{{title}}</h1>
 <p>Welcome to My Beer Tracker!</p> -->
   <div class="row">
-    <div id="homepage-top" class="col-md-12">
+    <div id="homepage-top" class="col-sm-12">
 
 
         <!-- <button id="join" type="button" class="btn btn-primary btn-lg">Join Free</button> -->
 
         <!-- <div id="image-content"> -->
-        <form method="get" action="users/register">
-            <button id="home-join-btn" type="submit" class="btn btn-primary btn-lg">Join Free</button>
-          </form>
+
           <h1 id="homepage-heading">My Beer Tracker</h1>
           <h2 id="homepage-second-heading">Know what's in your cellar<h2>
+          <form method="get" action="users/register">
+              <button id="home-join-btn" type="submit" class="btn btn-primary btn-lg">Join Free</button>
+          </form>
         <!-- </div> -->
 
   </div>
 </div>
 
   <div class="row">
-    <div class="col-md-3">
-      <div class="homepage-text">
-      {{#if user}}
-      Welcome, {{user.username}}
-      {{else}}
-      Hey! <a href="/users/login">Login</a> or <a href="/users/register">Register</a> now!
-      {{/if}}
-      <p>Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit.  </p>
-      <p>Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'? </p>
+    <div class="col-md-1">
 
-      </div>
     </div>
-    <div class="col-md-3">
-      <div class="homepage-text">
+    <div  id="home-textbox-left" class="col-xs-12 col-md-3" class="home-textbox">
+      <!-- <div class="homepage-text"> -->
+        <p>Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit.  </p>
+      <!-- </div> -->
+    </div>
 
-      <p>Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit.  </p>
-      <p>Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'? </p>
+    <div  id="home-textbox-center" class="col-xs-12 col-md-3" class="home-textbox">
+      <!-- <div class="homepage-text"> -->
+        <p>Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit.  </p>
+    </div>
 
-      </div>
+    <div id="home-textbox-right" class="col-xs-12 col-md-3" class="home-textbox">
+        <p>Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit.  </p>
+    </div>
+
+    <div class="col-md-1">
+
     </div>
   </div>
