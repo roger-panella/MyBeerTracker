@@ -3,6 +3,8 @@
     <div class="row">
       <div ng-controller="cellarListCtrl" class="col-md-8 col-xs-12">
         <div id='cellar-list-container'>
+          <label id="beer-search-label" for="filter">Search</label>
+          <input id="beer-search" type="text" class="form-control" name="filter" ng-model="textFilter">
           <form method="get" action='search?id={{id}}'>
             <button <a href='search?id={{id}}' type="submit" id="add-beer-btn" class="btn btn-primary"></a>Add a Beer</button>
           </form>
@@ -19,13 +21,13 @@
               <th>Edit</th>
             </tr>
 
-            <tr ng-repeat="beer in responseBody.beers">
+            <tr ng-repeat="beer in data.beers | filter : textFilter">
               <td>//beer.brewery//</td>
               <td>//beer.name//</td>
               <td>//beer.style//</td>
               <td>//beer.date//</td>
               <td>//beer.quantity//</td>
-              <td>//beer.forTrade//</td>
+              <td>//beer.forTrade | yesNo //</td>
                <td><a href="/edit?brewery=//beer.brewery//&beer=//beer.name//&style=//beer.style//&date=//beer.date//&quantity=//beer.quantity//&forTrade=//beer.forTrade//&id={{this._id}}&user={{id}}" id="edit-beer-link"><span class="glyphicon glyphicon-pencil"></span></td>
             </tr>
 
