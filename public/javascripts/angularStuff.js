@@ -7,7 +7,7 @@ var yesNo = function() {
   }
 }
 
-var cellarListCtrl = function ($scope, cellarData, $http, dataService){
+var cellarListCtrl = function ($scope, cellarData, $http){
   cellarData
     .success(function(data){
       $scope.data = data;
@@ -36,8 +36,13 @@ var cellarListCtrl = function ($scope, cellarData, $http, dataService){
                console.log('fuck yeah');
             })
             console.log('yesssssss yessssssss whooooooo');
+      }
+      $scope.deleteBeer = function(userid, beerid) {
+        var userId = document.getElementById('userId').innerHTML;
+        $http.delete('/api/users/' + userId +'/beers/' + beerid);
+        $http.get('/api/users/'+ userId);
+        location.reload();
       };
-      $scope.helloConsole = dataService.helloConsole;
     };
 
 
@@ -56,6 +61,6 @@ angular.module('beerTracker',[]).config(function($interpolateProvider){
      .service('cellarData', cellarData)
      .service('dataService', function(){
        this.helloConsole = function(){
-         console.log('This is the hello console service!');
+         console.log('This is the hello console service');
        }
      });
