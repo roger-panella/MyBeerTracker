@@ -37,11 +37,10 @@ var cellarListCtrl = function ($scope, cellarData, $http){
             })
             console.log('yesssssss yessssssss whooooooo');
       }
-      $scope.deleteBeer = function(userid, beerid) {
+      $scope.deleteBeer = function(userid, beerid, $index) {
         var userId = document.getElementById('userId').innerHTML;
         $http.delete('/api/users/' + userId +'/beers/' + beerid);
-        $http.get('/api/users/'+ userId);
-        location.reload();
+        $scope.data.beers.splice($index, 1);
       };
     };
 
