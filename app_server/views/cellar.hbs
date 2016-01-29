@@ -30,8 +30,7 @@
               <td><label ng-click="editing = true" ng-hide="editing" class="editing-label">//beer.date//</label><input ng-change="date.edited = true" ng-blur="editing = false;sendDate(beer.date, beer._id)" ng-show="editing" ng-model="beer.date" name="date" id="date-edit" class="editing-label" type="text"/></td>
               <!-- <input ng-show="editing" ng-model="beer.date" class="editing-label" type="text"/> -->
               <td><label ng-click="editing = true" ng-hide="editing" class="editing-label">//beer.quantity//</label><input ng-change="quantity.edited = true" ng-blur="editing = false;sendBeerObject(beer.brewery,beer.beer,beer.style,beer.date,beer.quantity, beer.forTrade, beer._id)" ng-show="editing" ng-model="beer.quantity" name="quantity" id="date-edit" class="editing-label" type="text"</label></td>
-
-              <td>//beer.forTrade//</td>
+              <td><label ng-click="editing = true" ng-hide="editing" class="editing-label">//beer.forTrade//</label><input ng-change="forTrade.edited = true" ng-blur="editing = false;sendBeerObject(beer.brewery,beer.beer,beer.style,beer.date,beer.quantity, beer.forTrade, beer._id)" ng-show="editing" ng-model="beer.forTrade" name="fortrade" id="date-edit" class="editing-label" type="text"</label></td>
               <td><a href="" ng-click="deleteBeer(user.id,beer._id,$index)" class="delete" id="edit-beer-link"><span class="glyphicon glyphicon-trash"></span></td>
             </tr>
 
