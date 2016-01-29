@@ -7,7 +7,7 @@ var beerSchema = new mongoose.Schema({
   style: String,
   date: String,
   quantity: Number,
-  forTrade: Boolean
+  forTrade: String
 });
 
 var User = new mongoose.Schema({

@@ -42,6 +42,22 @@ var cellarListCtrl = function ($scope, cellarData, $http){
         $http.delete('/api/users/' + userId +'/beers/' + beerid);
         $scope.data.beers.splice($index, 1);
       };
+      $scope.sendBeerObject = function(beerBrewery, beerName, beerStyle, beerDate, beerQuantity, beerForTrade, beerId) {
+        beerObject = {
+          brewery: beerBrewery,
+          beer: beerName,
+          style: beerStyle,
+          date: beerDate,
+          quantity: beerQuantity,
+          forTrade: beerForTrade
+        };
+        var idDiv = document.getElementById('userId');
+        var realUserId = idDiv.innerHTML;
+        $http.patch('/api/users/'+realUserId+'/beers/'+beerId,beerObject)
+          .success(function(data, status){
+            console.log('the beer was sent!');
+          })
+      }
     };
 
 
