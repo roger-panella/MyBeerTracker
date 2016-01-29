@@ -11,7 +11,7 @@ router.delete('/users/:userid', ctrlUsers.deleteOneUser);
 
 router.post('/users/:userid/beers', ctrlBeers.createBeers);
 router.get('/users/:userid/beers/:beerid', ctrlBeers.listOneBeer);
-router.put('/users/:userid/beers/:beerid', ctrlBeers.updateOneBeer);
+router.patch('/users/:userid/beers/:beerid', ctrlBeers.updateOneBeer);
 router.delete('/users/:userid/beers/:beerid', ctrlBeers.deleteOneBeer);
 
 module.exports = router;

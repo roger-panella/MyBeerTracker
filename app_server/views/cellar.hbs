@@ -28,7 +28,7 @@
               <td>//beer.brewery//</td>
               <td>//beer.beer//</td>
               <td>//beer.style//</td>
-              <td><label ng-hide="editing" class="editing-label">//beer.date//</label><input ng-show="editing" ng-model="beer.date" id="date-edit" class="editing-label" type="text"/></td>
+              <td><label ng-hide="editing" class="editing-label">//beer.date//</label><input ng-show="editing" ng-keyup="$event.keyCode == 13 && sendDate(beer.date, beer._id)" ng-model="beer.date" name="date" id="date-edit" class="editing-label" type="text"/></td>
               <!-- <input ng-show="editing" ng-model="beer.date" class="editing-label" type="text"/> -->
               <td>//beer.quantity//</td>
               <td>//beer.forTrade | yesNo //</td>

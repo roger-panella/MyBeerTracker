@@ -185,8 +185,6 @@ module.exports.addBeer = function(req, res){
     beerQuantity: quantity,
     beerForTrade: forTrade
   });
-  console.log('--------beerResult------');
-  console.log(beerResult);
 }
 
 module.exports.editBeer = function(req, res){

@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var passport = require('passport-local-mongoose');
 
 var beerSchema = new mongoose.Schema({
-  brewery: {type: String, required: true},
-  beer: {type: String, required: true},
+  brewery: {type: String},
+  beer: {type: String},
   style: String,
   date: String,
   quantity: Number,

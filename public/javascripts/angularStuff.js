@@ -7,19 +7,37 @@ var yesNo = function() {
   }
 }
 
-var cellarListCtrl = function ($scope, cellarData){
+var cellarListCtrl = function ($scope, cellarData, $http){
   cellarData
     .success(function(data){
       $scope.data = data;
-      console.log(data);
     })
     .error(function (e){
-      console.log(e);
     });
-    $scope.helloWorld = function (){
-      console.log('yo');
-    }
-  };
+    $scope.sendDate = function(date, id) {
+      var beerToSend;
+      console.log($scope.data.beers.length)
+      for (var i = 0; i < $scope.data.beers.length;i++){
+        if ($scope.data.beers[i]._id == id) {
+          beerToSend = {
+            beer : $scope.data.beers[i].beer,
+            brewery : $scope.data.beers[i].brewery,
+            style : $scope.data.beers[i].style,
+            date : date,
+            quantity : $scope.data.beers[i].quantity,
+            forTrade : $scope.data.beers[i].forTrade
+          }
+        }
+      }
+          var idDiv = document.getElementById('userId');
+          var realUserId = idDiv.innerHTML;
+          $http.patch('/api/users/'+realUserId +'/beers/'+id,beerToSend)
+            .success(function(data, status){
+               console.log('fuck yeah');
+            })
+            console.log('yesssssss yessssssss whooooooo');
+      }
+    };
 
 
 var cellarData = function($http) {
