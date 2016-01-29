@@ -1,6 +1,3 @@
-// angular.module('beerTracker',[]);
-// angular.module('beerTracker',[]);
-
 var yesNo = function() {
   return function(input) {
       return input ? 'Yes' : 'No';
@@ -63,7 +60,6 @@ var cellarListCtrl = function ($scope, cellarData, $http){
 
 var cellarData = function($http) {
   var userId = document.getElementById('userId').innerHTML;
-  console.log(userId);
   return $http.get('/api/users/' + userId);
 }
 
