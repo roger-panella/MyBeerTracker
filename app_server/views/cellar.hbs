@@ -20,7 +20,6 @@
               <th>Qty</th>
               <th>For Trade?</th>
               <th>Edit</th>
-              <th>Save</th>
               <th>Delete</th>
             </tr>
 
@@ -28,13 +27,12 @@
               <td>//beer.brewery//</td>
               <td>//beer.beer//</td>
               <td>//beer.style//</td>
-              <td><label ng-hide="editing" class="editing-label">//beer.date//</label><input ng-show="editing" ng-keyup="$event.keyCode == 13 && sendDate(beer.date, beer._id)" ng-model="beer.date" name="date" id="date-edit" class="editing-label" type="text"/></td>
+              <td><label ng-hide="editing" class="editing-label">//beer.date//</label><input ng-change="date.edited = true" ng-blur="editing = false;sendDate(beer.date, beer._id)" ng-show="editing" ng-model="beer.date" name="date" id="date-edit" class="editing-label" type="text"/></td>
               <!-- <input ng-show="editing" ng-model="beer.date" class="editing-label" type="text"/> -->
               <td>//beer.quantity//</td>
               <td>//beer.forTrade | yesNo //</td>
               <td><a href="" ng-click=" editing = !editing" id="edit-beer-link"><span class="glyphicon glyphicon-pencil"></span></td>
-              <td><a href="" ng-click="helloWorld()" id="edit-beer-link"><span class="glyphicon glyphicon-floppy-save"></span></td>
-              <td><a href="" class="delete" id="edit-beer-link"><span class="glyphicon glyphicon-trash"></span></td>
+              <td><a href="" ng-click="helloConsole()" class="delete" id="edit-beer-link"><span class="glyphicon glyphicon-trash"></span></td>
             </tr>
 
           </table>

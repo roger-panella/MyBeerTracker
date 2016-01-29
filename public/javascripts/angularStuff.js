@@ -7,7 +7,7 @@ var yesNo = function() {
   }
 }
 
-var cellarListCtrl = function ($scope, cellarData, $http){
+var cellarListCtrl = function ($scope, cellarData, $http, dataService){
   cellarData
     .success(function(data){
       $scope.data = data;
@@ -36,7 +36,8 @@ var cellarListCtrl = function ($scope, cellarData, $http){
                console.log('fuck yeah');
             })
             console.log('yesssssss yessssssss whooooooo');
-      }
+      };
+      $scope.helloConsole = dataService.helloConsole;
     };
 
 
@@ -52,4 +53,9 @@ angular.module('beerTracker',[]).config(function($interpolateProvider){
   })
      .controller('cellarListCtrl',cellarListCtrl)
      .filter('yesNo',yesNo)
-     .service('cellarData', cellarData);
+     .service('cellarData', cellarData)
+     .service('dataService', function(){
+       this.helloConsole = function(){
+         console.log('This is the hello console service!');
+       }
+     });
