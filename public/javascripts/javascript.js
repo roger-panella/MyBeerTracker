@@ -14,8 +14,8 @@ $(document).ready(function() {
 
 function searchUntappd(searchParams){
   $.ajax({
-    // url: 'https://api.untappd.com/v4/search/beer?client_id=01A58C550C16736146E4019C0B36C5A8478B128D&client_secret=89BF8DFD841F00A494EB2EFDCE95D477918A0880&q=' + searchParams +'&limit=10',
-    url: 'https://api.untappd.com/v4/search/beer?client_id=' + process.env.UTID + '&client_secret=' + process.env.UTSECRET + '&q=' + searchParams +'&limit=10',
+    url: 'https://api.untappd.com/v4/search/beer?client_id=01A58C550C16736146E4019C0B36C5A8478B128D&client_secret=89BF8DFD841F00A494EB2EFDCE95D477918A0880&q=' + searchParams +'&limit=10',
+    // url: 'https://api.untappd.com/v4/search/beer?client_id=' + process.env.UTID + '&client_secret=' + untapSecret + '&q=' + searchParams +'&limit=10',
     type: "GET",
     dataType: 'json',
       success: function(data) {

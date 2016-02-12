@@ -1,12 +1,12 @@
-require('dotenv').config();
 var express = require('express');
 var path = require('path');
+require('dotenv').config();
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
-// require('dotenv').config();
+
 
 hbs.registerHelper("getForTrade", function(forTrade){
   if (forTrade == true) {
@@ -37,6 +37,7 @@ require('./app_api/models/db');
 var routes = require('./app_server/routes/index');
 var routesApi = require('./app_api/routes/index');
 var users = require('./app_api/routes/users');
+
 
 
 var app = express();

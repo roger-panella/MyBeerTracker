@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 var request = require('request');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -167,7 +167,7 @@ module.exports.about = function(req, res){
 
 module.exports.searchForBeer = function(req, res){
   user = req.user;
-  res.render('search', { title: 'Search for a Beer', user: req.user});
+  res.render('search', { title: 'Search for a Beer', user: req.user, untapId: process.env.UTID, untapSecret: process.env.UTSECRET});
 }
 
 module.exports.addBeer = function(req, res){
