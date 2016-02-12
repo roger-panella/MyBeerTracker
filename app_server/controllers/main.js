@@ -1,6 +1,8 @@
+require('dotenv').config();
 var request = require('request');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+
 
 
 var apiOptions = {
@@ -20,6 +22,8 @@ var isAuthenticated = function (req, res, next) {
 module.exports.index = function(req, res){
   req.user;
   res.render('index', { title: 'My Beer Tracker', user: req.user});
+  console.log(process.env.UTID);
+  console.log(process.env.UTSECRET);
 };
 
 

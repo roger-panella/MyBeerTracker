@@ -1,8 +1,10 @@
+require('dotenv').config();
 var express = require('express');
 var router = express.Router();
 var ctrlMain = require('../controllers/main');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+
 // passport.authenticate('local', {failureFlash: 'Invalid username or password'});
 
 // passport.use(new LocalStrategy(User.authenticate()));
