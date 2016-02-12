@@ -7,6 +7,7 @@ $(document).ready(function() {
     var splitSearch = search.split(' ');
     searchParams = splitSearch.join('+');
     searchUntappd(searchParams);
+    // console.log(searchParams);
   });
 });
 
