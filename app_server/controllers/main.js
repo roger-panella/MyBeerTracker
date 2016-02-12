@@ -65,8 +65,6 @@ module.exports.cellar = function(req, res) {
   if (req.user) {
   var apiPath = apiOptions.server + '/api/users/' + req.user.id;
   renderCellar(req, res);
-  console.log('----apiPath');
-  console.log(apiPath);
 } else {
   res.redirect('/users/login');
 }
