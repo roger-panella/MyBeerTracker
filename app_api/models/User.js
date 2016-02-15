@@ -13,6 +13,7 @@ var beerSchema = new mongoose.Schema({
 var User = new mongoose.Schema({
   username: String,
   password: String,
+  token: String,
   beers: [beerSchema]
 });
 

@@ -213,28 +213,12 @@ module.exports.editBeer = function(req, res){
   });
 }
 
-function getTenBeers(data) {
-  var beerResults = [];
-  for (var i = 0; i < data.response.beers.items.length; i++) {
-    var beerObject = {};
-    beerObject["brewery"] = data.response.beers.items[i].brewery.brewery_name;
-    beerObject["beerName"] = data.response.beers.items[i].beer.beer_name;
-    beerObject["imageUrl"] = data.response.beers.items[i].beer.beer_label;
-    beerObject["beerStyle"] = data.response.beers.items[i].beer.beer_style;
-    beerResults.push(beerObject);
-  };
-   displayBeers(beerResults);
-};
-
 module.exports.searchBeers = function(req, res) {
   var searchParams = req.body.userSearch;
   var apiResponse;
-  console.log('-----searchparams----');
-  console.log(searchParams);
   request('https://api.untappd.com/v4/search/beer?client_id=' + process.env.UTID + '&client_secret=' + process.env.UTSECRET + '&q=' + searchParams +'&limit=10', function(error, response, body) {
   if (!error && response.statusCode == 200) {
   res.send(body);
     }
   })
-
 };

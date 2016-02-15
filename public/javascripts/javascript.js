@@ -7,29 +7,12 @@ $(document).ready(function() {
     var splitSearch = search.split(' ');
     searchParams = splitSearch.join('+');
     searchUntappd(searchParams);
-    console.log(searchParams);
   });
 });
-
-// function searchUntappd(searchParams){
-//   $.ajax({
-    // url: 'https://api.untappd.com/v4/search/beer?client_id=01A58C550C16736146E4019C0B36C5A8478B128D&client_secret=89BF8DFD841F00A494EB2EFDCE95D477918A0880&q=' + searchParams +'&limit=10',
-//     // url: 'https://api.untappd.com/v4/search/beer?client_id=' + ENV['UTID'] + '&client_secret=' + ENV['UTSECRET'] + '&q=' + searchParams +'&limit=10',
-//     type: "GET",
-//     dataType: 'json',
-//       success: function(data) {
-//       getTenBeers(data);
-//     },
-//       fail: function(error) {
-//       console.log('AJAX call didn\t work, son!');
-//     }
-//   })
-// };
 
 function searchUntappd(searchParams){
   $.ajax({
     url: '/search',
-    // url: 'https://api.untappd.com/v4/search/beer?client_id=' + ENV['UTID'] + '&client_secret=' + ENV['UTSECRET'] + '&q=' + searchParams +'&limit=10',
     type: "POST",
     dataType: 'text',
       data: {userSearch:searchParams},
@@ -45,8 +28,6 @@ function searchUntappd(searchParams){
 
 function getTenBeers(stringData) {
   var data = JSON.parse(stringData);
-  console.log('------data--------');
-  console.log(data);
   var beerResults = [];
   for (var i = 0; i < data.response.beers.items.length; i++) {
     var beerObject = {};

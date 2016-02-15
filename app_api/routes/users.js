@@ -40,7 +40,8 @@ router.post('/register', function(req, res){
         return res.render('register', {  user: user, message: "Whoops!  Something went wrong.  Let\'s try again." });
       }
       passport.authenticate('local')(req, res, function(){
-        res.redirect('/cellar');
+        // res.redirect('/cellar'); original rediect before untapped authenticate
+        res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=http://localhost:3000/cellar');
       });
     });
 });
