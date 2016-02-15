@@ -1,11 +1,13 @@
 var express = require('express');
 var path = require('path');
 require('dotenv').config();
+var request = require('request');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
+
 
 
 hbs.registerHelper("getForTrade", function(forTrade){

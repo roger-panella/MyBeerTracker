@@ -1,9 +1,9 @@
-// require('dotenv').config();
 var express = require('express');
 var router = express.Router();
 var ctrlMain = require('../controllers/main');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+
 
 // passport.authenticate('local', {failureFlash: 'Invalid username or password'});
 
@@ -20,5 +20,6 @@ router.get('/browse-cellars', ctrlMain.browseCellars);
 router.get('/search', ctrlMain.searchForBeer);
 router.get('/add', ctrlMain.addBeer);
 router.get('/edit', ctrlMain.editBeer);
+router.post('/search', ctrlMain.searchBeers);  // new route to handle search post request
 
 module.exports = router;

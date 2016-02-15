@@ -1,13 +1,12 @@
-<h1>{{title}}</h1>
+<!-- <h1>{{title}}</h1>
   <div class="row">
-
     <hello-world></hello-world>
       <div class="col-sm-7" id="add-beer-container">
         <fieldset class="form-group">
           <label for="exampleInputEmail1"></label>
-          <input type="text" id="beer-search-box" class="form-control" placeholder="ex: Russian River Supplication">
+          <input type="text" id="beer-search-box" class="form-control" placeholder="ex: Russian River Supplication"> -->
           <!-- <small class="text-muted">For best results search "brewery + beer"</small> -->
-          <img id="untappd-img" src="/images/pbu_40_black.png" alt="" />
+          <!-- <img id="untappd-img" src="/images/pbu_40_black.png" alt="" />
         </fieldset>
           <button class="btn btn-primary" id="add-beer-button">Search</button>
       </div>
@@ -16,6 +15,27 @@
       <div class="col-sm-5" id="beer-results">
 
       </div>
+  </div> -->
+
+  <h1>{{title}}</h1>
+    <div class="row">
+      <hello-world></hello-world>
+        <div class="col-sm-7" id="add-beer-container">
+          <fieldset id="beer-searches" class="form-group">
+          <!-- <form id="beer-search-form" action="/search" method="post"> -->
 
 
-  </div>
+            <label for="exampleInputEmail1"></label>
+            <input type="text" id="beer-search-box" class="form-control" placeholder="ex: Russian River Supplication">
+            <!-- <small class="text-muted">For best results search "brewery + beer"</small> -->
+            <img id="untappd-img" src="/images/pbu_40_black.png" alt="" />
+          </fieldset>
+            <button class="btn btn-primary" id="add-beer-button">Search</button>
+         <!-- </form> -->
+        </div>
+        {{userId}}
+
+        <div class="col-sm-5" id="beer-results">
+
+        </div>
+    </div>
