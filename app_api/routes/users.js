@@ -50,7 +50,8 @@ router.post('/register', function(req, res){
       passport.authenticate('local')(req, res, function(){
         // res.redirect('/cellar'); original rediect before untapped authenticate
         // res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=http://localhost:3000/cellar');
-        res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
+        // res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
+        res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + ENV['UTID'] + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
       });
     });
 });
