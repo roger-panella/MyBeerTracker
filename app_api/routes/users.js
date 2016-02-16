@@ -51,7 +51,7 @@ router.post('/register', function(req, res){
         // res.redirect('/cellar'); original rediect before untapped authenticate
         // res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=http://localhost:3000/cellar');
         // res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
-        res.redirect('https://untappd.com/oauth/authenticate/?client_id=01A58C550C16736146E4019C0B36C5A8478B128D&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
+        res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
       });
     });
 });
