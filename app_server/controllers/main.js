@@ -8,7 +8,8 @@ var apiOptions = {
   server : "http://localhost:3000"
 };
 if (process.env.NODE_ENV === 'production') {
-  apiOptions.server = "https://mysterious-spire-8549.herokuapp.com";
+  // apiOptions.server = "https://mysterious-spire-8549.herokuapp.com";
+  apiOptions.server = "http://www.mybeertracker.com";
 }
 
 var isAuthenticated = function (req, res, next) {

@@ -7,6 +7,14 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+var apiOptions = {
+  server : "http://localhost:3000"
+};
+if (process.env.NODE_ENV === 'production') {
+  // apiOptions.server = "https://mysterious-spire-8549.herokuapp.com";
+  apiOptions.server = "http://www.mybeertracker.com";
+}
+
 router.get('/', function(req, res){
     res.render('users', { user: req.user });
 });
@@ -41,7 +49,8 @@ router.post('/register', function(req, res){
       }
       passport.authenticate('local')(req, res, function(){
         // res.redirect('/cellar'); original rediect before untapped authenticate
-        res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=http://localhost:3000/cellar');
+        // res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=http://localhost:3000/cellar');
+        res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
       });
     });
 });
