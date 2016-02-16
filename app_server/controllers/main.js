@@ -67,7 +67,7 @@ module.exports.cellar = function(req, res) {
   var apiPath = apiOptions.server + '/api/users/' + req.user.id;
   if (req.query.code) {
     // request('https://untappd.com/oauth/authorize/?client_id=' + process.env.UTID + '&client_secret=' + process.env.UTSECRET + '&response_type=code&redirect_url=http://localhost:3000/cellar&code=' + req.query.code,
-    request('https://untappd.com/oauth/authorize/?client_id=' + process.env.UTID + '&client_secret=' + process.env.UTSECRET + '&response_type=code&redirect_url=' + apiOptions + 'http://localhost:3000/cellar&code=' + req.query.code,
+    request('https://untappd.com/oauth/authorize/?client_id=' + process.env.UTID + '&client_secret=' + process.env.UTSECRET + '&response_type=code&redirect_url=' + apiOptions + '/cellar@code=' + req.query.code,
     function(error, response, body) {
       if (!error && response.statusCode == 200) {
         var untappdResponse = JSON.parse(body);
