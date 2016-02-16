@@ -1,6 +1,7 @@
 var request = require('request');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var url = require('url');
 // var cheerio = require('cheerio'),
 //  $ = cheerio.load('<fieldset id="beer-searches">...</fieldset>');
 
@@ -70,10 +71,19 @@ module.exports.index = function(req, res){
 module.exports.cellar = function(req, res) {
   if (req.user) {
   var apiPath = apiOptions.server + '/api/users/' + req.user.id;
+  if (req.query.code) {
+    console.log(req.query.code);
+    request('https://untappd.com/oauth/authorize/?client_id=' + process.env.UTID + '&client_secret=' + process.env.UTSECRET + '&response_type=code&redirect_url=http://localhost:3000/cellar&code=' + req.query.code, function(error, response, body) {
+      if (!error && response.statusCode == 200) {
+        console.log('----untappd response-----');
+        console.log(body);
+      }
+    })
+  }
   renderCellar(req, res);
-} else {
+  } else {
   res.redirect('/users/login');
-}
+  }
 };
 
 //---------------------------------Angular renderCellar function!!!-------------------------------------------------------------
