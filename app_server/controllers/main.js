@@ -66,7 +66,9 @@ module.exports.cellar = function(req, res) {
   if (req.user) {
   var apiPath = apiOptions.server + '/api/users/' + req.user.id;
   if (req.query.code) {
-    request('https://untappd.com/oauth/authorize/?client_id=' + process.env.UTID + '&client_secret=' + process.env.UTSECRET + '&response_type=code&redirect_url=http://localhost:3000/cellar&code=' + req.query.code, function(error, response, body) {
+    // request('https://untappd.com/oauth/authorize/?client_id=' + process.env.UTID + '&client_secret=' + process.env.UTSECRET + '&response_type=code&redirect_url=http://localhost:3000/cellar&code=' + req.query.code,
+    request('https://untappd.com/oauth/authorize/?client_id=' + process.env.UTID + '&client_secret=' + process.env.UTSECRET + '&response_type=code&redirect_url=' + apiOptions + 'http://localhost:3000/cellar&code=' + req.query.code,
+    function(error, response, body) {
       if (!error && response.statusCode == 200) {
         var untappdResponse = JSON.parse(body);
         var userToken = untappdResponse.response.access_token;
@@ -226,7 +228,12 @@ module.exports.editBeer = function(req, res){
 module.exports.searchBeers = function(req, res) {
   var searchParams = req.body.userSearch;
   var apiResponse;
-  request('https://api.untappd.com/v4/search/beer?client_id=' + process.env.UTID + '&client_secret=' + process.env.UTSECRET + '&q=' + searchParams +'&limit=10', function(error, response, body) {
+  // request('https://api.untappd.com/v4/search/beer?client_id=' + process.env.UTID + '&client_secret=' + process.env.UTSECRET + '&q=' + searchParams +'&limit=10', function(error, response, body) {
+  // if (!error && response.statusCode == 200) {
+  // res.send(body);
+  console.log('-----user token----');
+  console.log(req.user.username + req.user.apiToken);
+  request('https://api.untappd.com/v4/search/beer?access_token=' + req.user.apiToken + '&q=' + searchParams +'&limit=10', function(error, response, body) {
   if (!error && response.statusCode == 200) {
   res.send(body);
     }
