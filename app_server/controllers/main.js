@@ -1,13 +1,8 @@
 var request = require('request');
 var passport = require('passport');
+var mongoose = require('mongoose');
 var LocalStrategy = require('passport-local').Strategy;
-var url = require('url');
 var User = require('../../app_api/models/User');
-// var cheerio = require('cheerio'),
-//  $ = cheerio.load('<fieldset id="beer-searches">...</fieldset>');
-
-
-
 
 var apiOptions = {
   server : "http://localhost:3000"
@@ -26,8 +21,6 @@ var isAuthenticated = function (req, res, next) {
 module.exports.index = function(req, res){
   req.user;
   res.render('index', { title: 'My Beer Tracker', user: req.user});
-  console.log(process.env.UTID);
-  console.log(process.env.UTSECRET);
 };
 
 
@@ -77,9 +70,13 @@ module.exports.cellar = function(req, res) {
       if (!error && response.statusCode == 200) {
         var untappdResponse = JSON.parse(body);
         var userToken = untappdResponse.response.access_token;
-        console.log('---this user----');
-        console.log(req.user.id);
-      
+        User.findOne({_id: req.user.id}, function(err, user){
+          if (err) { return next(err); }
+          user.apiToken = userToken;
+          user.save(function(err){
+            if (err) { return next(err); }
+          });
+        });
         }
       })
     }
