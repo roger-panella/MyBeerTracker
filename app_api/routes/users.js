@@ -1,6 +1,7 @@
 var express = require('express');
 var passport = require('passport');
 var async = require('async');
+var bcrypt = require('bcrypt-nodejs');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-sendgrid-transport');
@@ -27,12 +28,30 @@ router.get('/login', function(req, res){
     res.render('login', { user: req.user });
 });
 
-router.post('/login', passport.authenticate('local', { failureRedirect: '/users/login', message: "Whoops! something went wrong.  Let\'s try again."}),
-  function(req, res) {
-    console.log('im getting here');
-    res.redirect('/cellar');
-  }
-);
+//----working Passport login-----//
+
+// router.post('/login', passport.authenticate('local', { failureRedirect: '/users/login', message: "Whoops! something went wrong.  Let\'s try again."}),
+//   function(req, res) {
+//     console.log('im getting here');
+//     res.redirect('/cellar');
+//   }
+// );
+
+//--- bcrypt login -----
+
+router.post('/login', function(req, res, next){
+  passport.authenticate('local', function(err, user, info){
+    if (err) return next(err)
+    if (!user) {
+      console.log('----nope!----');
+      return res.redirect('/users/login')
+    }
+    req.logIn(user, function(err){
+      if (err) return next(err);
+      return res.redirect('/');
+    });
+  })(req, res, next);
+});
 
 router.get('/register', function(req, res){
     if (req.user) {
@@ -42,23 +61,39 @@ router.get('/register', function(req, res){
   }
 });
 
+//------original working register-----//
+
+// router.post('/register', function(req, res){
+//     User.register(new User({
+//       username: req.body.username,
+//       email: req.body.email
+//     }),
+//     req.body.password,
+//     function(err, user) {
+//       if (err) {
+//         return res.render('register', {  user: user, message: "Whoops!  Something went wrong.  Let\'s try again." });
+//       }
+//       passport.authenticate('local')(req, res, function(){
+//         // res.redirect('/cellar'); original rediect before untapped authenticate
+//         // res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=http://localhost:3000/cellar');
+//         // res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
+//         res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
+//       });
+//     });
+// });
+
 router.post('/register', function(req, res){
-    User.register(new User({
-      username: req.body.username,
-      email: req.body.email
-    }),
-    req.body.password,
-    function(err, user) {
-      if (err) {
-        return res.render('register', {  user: user, message: "Whoops!  Something went wrong.  Let\'s try again." });
-      }
-      passport.authenticate('local')(req, res, function(){
-        // res.redirect('/cellar'); original rediect before untapped authenticate
-        // res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=http://localhost:3000/cellar');
-        // res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
-        res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
-      });
+  var user = new User({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password
+  });
+
+  user.save(function(err){
+    req.logIn(user, function(err){
+      res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
     });
+  });
 });
 
 router.get('/logout', function(req, res){

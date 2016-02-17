@@ -56,9 +56,34 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 var User = require('./app_api/models/User');
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// passport.use(new LocalStrategy(User.authenticate()));
+
+passport.use(new LocalStrategy(function(username, password, done){
+  User.findOne({ username: username }, function(err, user){
+    if (err) return done(err);
+    if (!user) return done(null, false, { message: 'Incorrect username' });
+    user.comparePassword(password, function(err, isMatch){
+      if (isMatch) {
+        return done(null, user);
+      } else {
+        return done(null, false, { message: 'Incorrect password'});
+      }
+    });
+  });
+}));
+
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
+
+passport.serializeUser(function(user, done){
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done){
+  User.findById(id, function(err, user){
+    done(err, user);
+  });
+});
 
 // view engine setup
 app.set('views', path.join(__dirname,'app_server', 'views'));
