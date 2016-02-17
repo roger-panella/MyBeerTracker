@@ -1,5 +1,8 @@
 var express = require('express');
 var path = require('path');
+var nodemailer = require('nodemailer');
+var async = require('async');
+var crypto = require('crypto');
 require('dotenv').config();
 var request = require('request');
 var favicon = require('serve-favicon');
