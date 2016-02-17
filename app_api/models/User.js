@@ -12,8 +12,11 @@ var beerSchema = new mongoose.Schema({
 
 var User = new mongoose.Schema({
   username: String,
+  email: String,
   password: String,
   apiToken: String,
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
   beers: [beerSchema]
 });
 

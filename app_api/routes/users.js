@@ -40,7 +40,8 @@ router.get('/register', function(req, res){
 
 router.post('/register', function(req, res){
     User.register(new User({
-      username: req.body.username
+      username: req.body.username,
+      email: req.body.email
     }),
     req.body.password,
     function(err, user) {
@@ -60,5 +61,16 @@ router.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
 });
+
+router.get('/forgot-password', function(req, res){
+  res.render('forgot', {
+    user: req.user,
+    title: 'Reset Password | My Beer Tracker'
+  });
+});
+
+
+
+
 
 module.exports = router;

@@ -9,8 +9,6 @@ var jsonResponse = function(res, status, content) {
 module.exports.createBeers = function (req, res) {
   var userid = req.params.userid;
   if (userid) {
-    console.log('---------User');
-    console.log('User');
   User.findById(userid).select('beers')
        .exec(
          function(err, user){
