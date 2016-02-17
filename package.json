@@ -25,6 +25,8 @@
     "mongoose": "^4.3.6",
     "morgan": "~1.6.1",
     "nodemailer": "^2.1.0",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "nodemailer-smtp-transport": "^2.2.2",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0",

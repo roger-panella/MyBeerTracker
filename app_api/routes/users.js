@@ -1,5 +1,9 @@
 var express = require('express');
 var passport = require('passport');
+var async = require('async');
+var crypto = require('crypto');
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-sendgrid-transport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/User');
 var router = express.Router();
@@ -69,6 +73,53 @@ router.get('/forgot-password', function(req, res){
   });
 });
 
+router.post('/forgot-password', function(req, res, next){
+  async.waterfall([
+    function(done) {
+      crypto.randomBytes(20, function(err, buf){
+        var token = buf.toString('hex');
+        done(err, token);
+      });
+    },
+    function(token, done) {
+      User.findOne({ email: req.body.email }, function(err, user){
+        if (!user) {
+          // req.flash('error', 'Hmmmm. No account with that email address exists.');
+          return res.redirect('/forgot');
+        }
+
+        user.resetPasswordToken = token;
+        user.resetPasswordExpires = Date.now() + 3600000;
+        user.save(function(err) {
+          done(err, token, user);
+        });
+      });
+    },
+    function(token, user, done) {
+      var options = {
+        auth: {
+          api_user: process.env.SGLOGIN,
+          api_key: process.env.SGPASS
+        }
+      }
+
+      var client = nodemailer.createTransport(smtpTransport(options));
+
+      var mailOptions = {
+        to: user.email,
+        from: 'rogerpanella@gmail.com',
+        subject: 'My Beer Tracker Password Reset Request',
+        text: 'You\'re receiving this because you requested to reset your My Beer Tracker Password. \n\n' + 'Please click on the following link to complete this process:\n\n' + 'http://' + req.headers.host + '/reset/' + token + '\n\n' + 'If you did not request this password change, please ignore this message. \n'
+      };
+      client.sendMail(mailOptions, function(err){
+        done(err, 'done');
+      });
+    }
+  ], function(err){
+    if (err) return next(err);
+    res.redirect('/');
+  });
+});
 
 
 
