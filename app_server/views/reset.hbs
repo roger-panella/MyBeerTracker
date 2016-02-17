@@ -1,8 +1,8 @@
-<h1>Reset Your Password</h1>
+<h1>Reset Your Password{{email}}</h1>
 
 <div id="reset-form-container">
 
-<form action="/users/forgot-password" method="post">
+<form action="/users/reset/{{token}}" method="post">
 
   <fieldset class="form-group">
     <label for="password">New Password</label>

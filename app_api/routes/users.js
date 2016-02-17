@@ -109,7 +109,7 @@ router.post('/forgot-password', function(req, res, next){
         to: user.email,
         from: 'rogerpanella@gmail.com',
         subject: 'My Beer Tracker Password Reset Request',
-        text: 'You\'re receiving this because you requested to reset your My Beer Tracker Password. \n\n' + 'Please click on the following link to complete this process:\n\n' + 'http://' + req.headers.host + '/reset/' + token + '\n\n' + 'If you did not request this password change, please ignore this message. \n'
+        text: 'You\'re receiving this because you requested to reset your My Beer Tracker Password. \n\n' + 'Please click on the following link to complete this process:\n\n' + 'http://' + req.headers.host + '/users/reset/' + token + '\n\n' + 'If you did not request this password change, please ignore this message. \n'
       };
       client.sendMail(mailOptions, function(err){
         done(err, 'done');
@@ -124,16 +124,65 @@ router.post('/forgot-password', function(req, res, next){
 router.get('/reset/:token', function(req, res){
   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user){
     if (!user) {
-      req.flash('error', 'Password reset token is invalid or has expired');
+      //  req.flash('error', 'Password reset token is invalid or has expired');
       return res.redirect('/forgot-password');
     }
     res.render('reset', {
-      user: req.user
+      user: req.user,
+      email: user.email,
+      token: user.resetPasswordToken
     });
+    console.log('---email from get-----');
+    console.log(user.email);
   });
 });
 
+router.post('/reset/:token', function(req, res){
+  async.waterfall([
+    function(done){
+      User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } },function(err, user) {
+        if (!user) {
+          console.log('no user!');
+          // req.flash('error', 'Password reset token is invalid or has expired');
+          return res.redirect('/');
+        }
+        console.log('----user email-------');
+        console.log(user.email);
+        user.password = req.body.password;
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpires = undefined;
 
+        user.save(function(err){
+          req.logIn(user, function(err){
+            done(err, user);
+          });
+        });
+      });
+    },
+    function(user, done) {
+      var options = {
+        auth: {
+          api_user: process.env.SGLOGIN,
+          api_key: process.env.SGPASS
+        }
+      }
+
+      var client = nodemailer.createTransport(smtpTransport(options));
+
+      var mailOptions = {
+        to: user.email,
+        from: 'rogerpanella@gmail.com',
+        subject: 'My Beer Tracker Password Changed',
+        text: 'This email is just to let you know that your My Beer Tracker password has been successfully changed.  Woo hoo! \n\n'
+      };
+      client.sendMail(mailOptions, function(err){
+        done(err, 'done');
+    });
+   }
+ ], function(err){
+   res.redirect('/');
+ });
+});
 
 
 module.exports = router;
