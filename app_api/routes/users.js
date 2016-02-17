@@ -208,7 +208,7 @@ router.post('/reset/:token', function(req, res){
         to: user.email,
         from: 'rogerpanella@gmail.com',
         subject: 'My Beer Tracker Password Changed',
-        text: 'This email is just to let you know that your My Beer Tracker password has been successfully changed.  Woo hoo! \n\n'
+        text: 'Just letting you know that your My Beer Tracker password has been successfully changed.  Woo hoo! \n\n'
       };
       client.sendMail(mailOptions, function(err){
         done(err, 'done');
