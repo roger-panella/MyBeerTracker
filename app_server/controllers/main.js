@@ -189,7 +189,9 @@ module.exports.searchForBeer = function(req, res){
 
 module.exports.addBeer = function(req, res){
   var brewery = req.query.brewery;
-  var beer = req.query.beer;
+  // var beer = req.query.beer;
+  var beerFirst = req.query.beer;
+  var beer = beerFirst.replace(/%26/g,'&');
   var style = req.query.style;
   var date = req.query.date;
   var quantity = req.query.quantity;

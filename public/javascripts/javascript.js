@@ -56,9 +56,16 @@ function displayBeers(beerResults){
     singleBeerDiv.appendChild(labelImage);
     var singleBeerListElement = document.createElement("li");
     singleBeerListElement.id = "one-beer-result";
-    var encodedBeerUrl=encodeURI('/add?brewery='+beerResults[i].brewery + '&beer=' + beerResults[i].beerName + '&style=' +beerResults[i].beerStyle);
+    // var encodedBeerName = beerResults[i].beerName.replace(/&/g,'%26');
+    // var encodedBeerUrl=encodeURI('/add?brewery='+beerResults[i].brewery + '&beer=' + encodedBeerName + '&style=' +beerResults[i].beerStyle);
+    var encodedBeer = beerResults[i].beerName.replace(/&/g,'%26');
+    var encodedBeerUrl=encodeURI('/add?brewery='+beerResults[i].brewery + '&beer=' + encodedBeer + '&style=' +beerResults[i].beerStyle);
+    // var encodedBeerUrl=encodeURI('/add?brewery='+beerResults[i].brewery + '&beer=' + beerResults[i].beerName + '&style=' +beerResults[i].beerStyle);
     var beerUrl = encodedBeerUrl.replace(/#/g,'%23');
-    singleBeerListElement.innerHTML = '<a href=' + beerUrl + '>'+beerResults[i].brewery+ ' ' + beerResults[i].beerName+'</a>';
+
+    // var beerUrl = firstBeerUrl.replace(/&/g,'%26');
+    console.log(encodeURIComponent(beerResults[i].beerName));
+    singleBeerListElement.innerHTML = '<a href=' + beerUrl + '>'+beerResults[i].brewery + ' ' + beerResults[i].beerName+'</a>';
     // singleBeerListElement.innerHTML = '<a href="/add?brewery='+beerResults[i].brewery + '&beer=' + beerResults[i].beerName + '&style=' +beerResults[i].beerStyle+'">'+beerResults[i].brewery+ ' ' + beerResults[i].beerName+'</a>';
     singleBeerDiv.appendChild(singleBeerListElement);
     var allBeersList = document.getElementById("beer-list");
