@@ -56,9 +56,8 @@ function displayBeers(beerResults){
     singleBeerDiv.appendChild(labelImage);
     var singleBeerListElement = document.createElement("li");
     singleBeerListElement.id = "one-beer-result";
-    var beerUrl=encodeURI('/add?brewery='+beerResults[i].brewery + '&beer=' + beerResults[i].beerName + '&style=' +beerResults[i].beerStyle);
-    console.log('----beerURL-----');
-    console.log(beerUrl);
+    var encodedBeerUrl=encodeURI('/add?brewery='+beerResults[i].brewery + '&beer=' + beerResults[i].beerName + '&style=' +beerResults[i].beerStyle);
+    var beerUrl = encodedBeerUrl.replace(/#/g,'%23');
     singleBeerListElement.innerHTML = '<a href=' + beerUrl + '>'+beerResults[i].brewery+ ' ' + beerResults[i].beerName+'</a>';
     // singleBeerListElement.innerHTML = '<a href="/add?brewery='+beerResults[i].brewery + '&beer=' + beerResults[i].beerName + '&style=' +beerResults[i].beerStyle+'">'+beerResults[i].brewery+ ' ' + beerResults[i].beerName+'</a>';
     singleBeerDiv.appendChild(singleBeerListElement);
