@@ -7,10 +7,14 @@
           <label id="beer-search-label" for="filter">Search</label>
           <input id="beer-search" type="text" class="form-control" name="filter" ng-model="textFilter">
           <form method="get" action='search?id={{id}}'>
+
             <button <a href='search?id={{id}}' type="submit" id="add-beer-btn" class="btn btn-primary"></a>Add a Beer</button>
           </form>
           <script>
           </script>
+          <div id="edit-instruction">
+             <p>Click "Bottling Date", "Qty" or "For Trade?" to edit</p>
+          </div>
           <table class="table table-striped">
             <tr>
               <th>Brewery</th>
