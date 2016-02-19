@@ -7,6 +7,7 @@ require('dotenv').config();
 var request = require('request');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+var flash = require('express-flash');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
@@ -54,6 +55,7 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 var User = require('./app_api/models/User');
 // passport.use(new LocalStrategy(User.authenticate()));

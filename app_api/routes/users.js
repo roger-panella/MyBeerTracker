@@ -8,6 +8,8 @@ var smtpTransport = require('nodemailer-sendgrid-transport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/User');
 var router = express.Router();
+var flash = require('express-flash');
+
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -43,7 +45,7 @@ router.post('/login', function(req, res, next){
   passport.authenticate('local', function(err, user, info){
     if (err) return next(err)
     if (!user) {
-      console.log('----nope!----');
+      req.flash('noUser', 'We can\'t find that user');
       return res.redirect('/users/login')
     }
     req.logIn(user, function(err){
