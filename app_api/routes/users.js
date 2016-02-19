@@ -85,17 +85,21 @@ router.get('/register', function(req, res){
 // });
 
 router.post('/register', function(req, res){
+  if (req.body.password == req.body.passwordConfirm) {
   var user = new User({
     username: req.body.username,
     email: req.body.email,
     password: req.body.password
   });
-
   user.save(function(err){
     req.logIn(user, function(err){
       res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
     });
   });
+} else {
+  req.flash('error', 'Passwords don\'t match.  Please try again');
+  res.redirect('/users/register');
+ };
 });
 
 router.get('/logout', function(req, res){
