@@ -48,6 +48,16 @@ db.cellars.save({
   }]
 })
 
+{{#each beers}}
+<tr>
+  <td>{{this.brewery}}</td>
+  <td>{{this.beer}}</td>
+  <td>{{this.style}}</td>
+  <td>{{this.date}}</td>
+  <td>{{this.forTrade}}</td>
+</tr>
+{{/each}}
+
 Mongolab Database URI:
 mongodb://heroku_zgm6nbj7:7v5socq5b84mc0qnagsu68n9qr@ds047325.mongolab.com:47325/heroku_zgm6nbj7
 

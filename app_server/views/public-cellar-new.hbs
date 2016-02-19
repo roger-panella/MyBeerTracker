@@ -1,7 +1,8 @@
-<h1>{{pageHeader.username}}'s {{pageHeader.title}}{{theId}}</h1>
+<div ng-controller="cellarListCtrl">
+<h1>{{pageHeader.username}}'s {{pageHeader.title}}</h1>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-8 col-xs-12">
+      <!-- <div class="col-md-8 col-xs-12"> -->
         <div id='cellar-list-container'>
           <label id="beer-search-label" for="filter">Search</label>
           <input id="beer-search" type="text" class="form-control" name="filter" ng-model="textFilter">
@@ -11,17 +12,21 @@
               <th>Beer</th>
               <th>Style</th>
               <th>Bottling Date</th>
+              <th>Qty</th>
               <th>For Trade?</th>
             </tr>
-            {{#each beers}}
-            <tr>
-              <td>{{this.brewery}}</td>
-              <td>{{this.beer}}</td>
-              <td>{{this.style}}</td>
-              <td>{{this.date}}</td>
-              <td>{{this.forTrade}}</td>
+
+            <tr class="beer-row" ng-repeat="beer in data.beers | filter : textFilter">
+              <td>//beer.brewery//</td>
+              <td>//beer.beer//</td>
+              <td>//beer.style//</td>
+              <td>//beer.date//</td>
+              <td>//beer.quantity//</td>
+              <td>//beer.forTrade//</td>
             </tr>
-            {{/each}}
+
+
+
           </table>
          </div>
         </div>
