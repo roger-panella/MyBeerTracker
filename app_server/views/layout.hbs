@@ -29,6 +29,21 @@
     </script>
   </head>
 
+  {{#if messages.error}}
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      {{messages.error}}
+    </div>
+  {{/if}}
+
+  {{#if messages.info}}
+    <div class="alert alert-info flash-messages">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{messages.info}}</div>
+    </div>
+  {{/if}}
+
+
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="navbar-header">
@@ -60,6 +75,7 @@
     </nav>
 
     <div class="container-fluid">
+
 
           {{{body}}}
 

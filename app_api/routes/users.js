@@ -45,7 +45,7 @@ router.post('/login', function(req, res, next){
   passport.authenticate('local', function(err, user, info){
     if (err) return next(err)
     if (!user) {
-      req.flash('noUser', 'We can\'t find that user');
+      req.flash('error', 'Hmmm.  We can\'t find that user.');
       return res.redirect('/users/login')
     }
     req.logIn(user, function(err){
@@ -121,8 +121,8 @@ router.post('/forgot-password', function(req, res, next){
     function(token, done) {
       User.findOne({ email: req.body.email }, function(err, user){
         if (!user) {
-          // req.flash('error', 'Hmmmm. No account with that email address exists.');
-          return res.redirect('/forgot');
+          req.flash('error', 'Hmmmm. No account with that email address exists.');
+          return res.redirect('/users/forgot-password');
         }
 
         user.resetPasswordToken = token;
@@ -149,19 +149,20 @@ router.post('/forgot-password', function(req, res, next){
         text: 'You\'re receiving this because you requested to reset your My Beer Tracker Password. \n\n' + 'Please click on the following link to complete this process:\n\n' + 'http://' + req.headers.host + '/users/reset/' + token + '\n\n' + 'If you did not request this password change, please ignore this message. \n'
       };
       client.sendMail(mailOptions, function(err){
+        req.flash('info', 'An email has been sent to ' + user.email + ' with instructions on how to reset your password.');
         done(err, 'done');
       });
     }
   ], function(err){
     if (err) return next(err);
-    res.redirect('/');
+    res.redirect('/users/forgot-password');
   });
 });
 
 router.get('/reset/:token', function(req, res){
   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user){
     if (!user) {
-      //  req.flash('error', 'Password reset token is invalid or has expired');
+      req.flash('error', 'Password reset token is invalid or has expired');
       return res.redirect('/forgot-password');
     }
     res.render('reset', {
@@ -180,7 +181,7 @@ router.post('/reset/:token', function(req, res){
       User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } },function(err, user) {
         if (!user) {
           console.log('no user!');
-          // req.flash('error', 'Password reset token is invalid or has expired');
+          req.flash('error', 'Password reset token is invalid or has expired');
           return res.redirect('/');
         }
         console.log('----user email-------');
