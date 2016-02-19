@@ -45,7 +45,7 @@ router.post('/login', function(req, res, next){
   passport.authenticate('local', function(err, user, info){
     if (err) return next(err)
     if (!user) {
-      req.flash('error', 'Hmmm.  We can\'t find that user.');
+      req.flash('error', 'Hmmm.  Something went wrong.  Sure you typed that right?');
       return res.redirect('/users/login')
     }
     req.logIn(user, function(err){
@@ -121,7 +121,7 @@ router.post('/forgot-password', function(req, res, next){
     function(token, done) {
       User.findOne({ email: req.body.email }, function(err, user){
         if (!user) {
-          req.flash('error', 'Hmmmm. No account with that email address exists.');
+          req.flash('error', 'Hmmmm. We can\t find an account with that email address.');
           return res.redirect('/users/forgot-password');
         }
 
@@ -149,7 +149,7 @@ router.post('/forgot-password', function(req, res, next){
         text: 'You\'re receiving this because you requested to reset your My Beer Tracker Password. \n\n' + 'Please click on the following link to complete this process:\n\n' + 'http://' + req.headers.host + '/users/reset/' + token + '\n\n' + 'If you did not request this password change, please ignore this message. \n'
       };
       client.sendMail(mailOptions, function(err){
-        req.flash('info', 'An email has been sent to ' + user.email + ' with instructions on how to reset your password.');
+        req.flash('warning', 'An email has been sent to ' + user.email + ' with password reset instructions');
         done(err, 'done');
       });
     }
@@ -214,6 +214,7 @@ router.post('/reset/:token', function(req, res){
         text: 'Just letting you know that your My Beer Tracker password has been successfully changed.  Woo hoo! \n\n'
       };
       client.sendMail(mailOptions, function(err){
+        req.flash('success', 'Password changed successfully!  A confirmation email has also been sent to ' + user.email);
         done(err, 'done');
     });
    }

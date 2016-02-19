@@ -29,17 +29,24 @@
     </script>
   </head>
 
-  {{#if messages.error}}
-    <div class="alert alert-danger alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      {{messages.error}}
-    </div>
-  {{/if}}
-
   {{#if messages.info}}
     <div class="alert alert-info flash-messages">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         {{messages.info}}</div>
+    </div>
+  {{/if}}
+
+  {{#if messages.warning}}
+    <div class="alert alert-warning flash-messages">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{messages.warning}}</div>
+    </div>
+  {{/if}}
+
+  {{#if messages.success}}
+    <div class="alert alert-success flash-messages">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{messages.success}}</div>
     </div>
   {{/if}}
 

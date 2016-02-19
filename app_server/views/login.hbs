@@ -3,7 +3,7 @@
 <div id="login-form-container">
 
 
-    
+
 
 
   <form action="/users/login" method="post">
@@ -17,7 +17,11 @@
       <label for="username">Password</label>
       <input type="password" name="password" class="form-control" placeholder="Password">
     </fieldset>
-
+    {{#if messages.error}}
+      <div id="login-error">
+        {{messages.error}}
+      </div>
+    {{/if}}
     <button id="login-button" class="btn btn-primary" type="submit" value="Login">Login</button>
   </form>
 

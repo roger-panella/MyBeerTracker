@@ -10,9 +10,6 @@ Untappd API info:
       <!-- <td>//beer.date//</td> -->
 
 
-Client ID: 01A58C550C16736146E4019C0B36C5A8478B128D
-Client Secret: 89BF8DFD841F00A494EB2EFDCE95D477918A0880
-
 db.cellars.save({
   username: 'Ralph',
   beers: [{
@@ -57,6 +54,14 @@ db.cellars.save({
   <td>{{this.forTrade}}</td>
 </tr>
 {{/each}}
+
+
+  {{#if messages.error}}
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      {{messages.error}}
+    </div>
+  {{/if}}
 
 Mongolab Database URI:
 mongodb://heroku_zgm6nbj7:7v5socq5b84mc0qnagsu68n9qr@ds047325.mongolab.com:47325/heroku_zgm6nbj7
