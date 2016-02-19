@@ -1,0 +1,34 @@
+<h1>{{pageHeader.username}}'s {{pageHeader.title}}{{theId}}</h1>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 col-xs-12">
+        <div id='cellar-list-container'>
+          <label id="beer-search-label" for="filter">Search</label>
+          <input id="beer-search" type="text" class="form-control" name="filter" ng-model="textFilter">
+          <table class="table table-striped">
+            <tr>
+              <th>Brewery</th>
+              <th>Beer</th>
+              <th>Style</th>
+              <th>Bottling Date</th>
+              <th>For Trade?</th>
+            </tr>
+            {{#each beers}}
+            <tr>
+              <td>{{this.brewery}}</td>
+              <td>{{this.beer}}</td>
+              <td>{{this.style}}</td>
+              <td>{{this.date}}</td>
+              <td>{{this.forTrade}}</td>
+            </tr>
+            {{/each}}
+          </table>
+         </div>
+        </div>
+
+        <div class="col-md-2 col-xs-8">
+      </div>
+    </div>
+  </div>
+
+   <div id="userId">{{theId}}</div>

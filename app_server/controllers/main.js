@@ -131,9 +131,12 @@ module.exports.publicCellar = function(req, res){
 };
 
 var renderPublicCellar = function(req, res, responseBody) {
-  res.render('public_cellar', {
+  console.log('-----responseBody------');
+  console.log(responseBody);
+  res.render('public-cellar-new', {
     user: req.user,
     title:  responseBody.username+"'s Cellar | My Beer Tracker",
+    theId: responseBody._id,
     pageHeader: {
       username: responseBody.username,
       title: 'Cellar',
