@@ -90,6 +90,32 @@ router.get('/register', function(req, res){
 //     });
 // });
 
+// router.post('/register', function(req, res, next){
+//   if (req.body.password == req.body.passwordConfirm) {
+//   var user = new User({
+//     username: req.body.username,
+//     email: req.body.email,
+//     password: req.body.password
+//   });
+//   user.save (function(err){
+//     if (err) {
+//       req.flash('error', 'Something went wrong with your registration');
+//     }
+//     console.log('---save to db error-----');
+//     console.log(err);
+//     req.logIn(user, function(err){
+//     console.log('logging in');
+//     // res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
+//     });
+//     res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
+//   });
+// } else {
+//   req.flash('error', 'Passwords don\'t match.  Please try again');
+//   res.redirect('/users/register');
+//  };
+// });
+
+// most recent working register post route
 router.post('/register', function(req, res){
   if (req.body.password == req.body.passwordConfirm) {
   var user = new User({
@@ -107,7 +133,6 @@ router.post('/register', function(req, res){
   res.redirect('/users/register');
  };
 });
-
 // post register route with messed up error messages
 
 // router.post('/register', function(req, res, next){
