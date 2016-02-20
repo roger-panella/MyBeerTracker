@@ -35,6 +35,8 @@ var cellarListCtrl = function ($scope, cellarData, $http){
             console.log('yesssssss yessssssss whooooooo');
       }
       $scope.deleteBeer = function(userid, beerid, $index) {
+        vex.dialog.confirm
+
         var userId = document.getElementById('userId').innerHTML;
         $http.delete('/api/users/' + userId +'/beers/' + beerid);
         $scope.data.beers.splice($index, 1);
