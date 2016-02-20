@@ -172,7 +172,7 @@ router.post('/forgot-password', function(req, res, next){
     function(token, done) {
       User.findOne({ email: req.body.email }, function(err, user){
         if (!user) {
-          req.flash('error', 'Hmmmm. We can\t find an account with that email address.');
+          req.flash('error', 'We can\'t find an account with the email address ' + '\"' + req.body.email + '\"');
           return res.redirect('/users/forgot-password');
         }
 
