@@ -43,10 +43,20 @@ router.get('/login', function(req, res){
 
 router.post('/login', function(req, res, next){
   passport.authenticate('local', function(err, user, info){
+    console.log('---info---');
+    console.log(info);
+    console.log('---req----');
+    console.log(req);
     if (err) return next(err)
     if (!user) {
-      req.flash('error', 'Hmmm.  Something went wrong.  Sure you typed that right?');
-      return res.redirect('/users/login')
+      if (info.message == 'Missing credentials') {
+        req.flash('error', 'Please fill in both fields.');
+      } else if (info.message == 'Incorrect username') {
+        req.flash('error', 'Username ' + '\"' + req.body.username + '\"' + ' doesn\'t exist');
+      } else if (info.message == 'Incorrect password') {
+        req.flash('error', 'Incorrect password for username ' + req.body.username);
+      }
+      return res.redirect('/users/login');
     }
     req.logIn(user, function(err){
       if (err) return next(err);
