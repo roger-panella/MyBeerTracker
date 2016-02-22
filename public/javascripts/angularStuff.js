@@ -70,14 +70,6 @@ var cellarListCtrl = function ($scope, cellarData, $http){
       }
     };
 
-var ModalController = function($scope, close) {
-  $scope.close = function(result){
-    close(result, 500);
-  };
-};
-
-
-
 var cellarData = function($http) {
   var userId = document.getElementById('userId').innerHTML;
   return $http.get('/api/users/' + userId);
@@ -88,7 +80,6 @@ angular.module('beerTracker',[]).config(function($interpolateProvider){
       $interpolateProvider.endSymbol('//');
   })
      .controller('cellarListCtrl',cellarListCtrl)
-     .controller('ModalController',ModalController)
      .filter('yesNo',yesNo)
      .service('cellarData', cellarData)
      .service('dataService', function(){

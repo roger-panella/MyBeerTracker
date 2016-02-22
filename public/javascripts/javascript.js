@@ -1,9 +1,11 @@
 $(document).ready(function() {
+  console.log('working');
   $("#add-beer-button").click(function(){
     if (document.contains(document.getElementById("beer-list"))) {
       document.getElementById("beer-list").remove();
     };
     var search = $("#beer-search-box").val();
+    console.log(search);
     var splitSearch = search.split(' ');
     searchParams = splitSearch.join('+');
     searchUntappd(searchParams);
