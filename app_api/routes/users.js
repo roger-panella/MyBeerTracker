@@ -124,6 +124,8 @@ router.post('/register', function(req, res){
     password: req.body.password
   });
   user.save (function(err){
+    console.log('----register error------');
+    console.log(err);
     req.logIn(user, function(err){
     res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
     });
