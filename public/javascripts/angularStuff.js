@@ -43,14 +43,14 @@ var cellarListCtrl = function ($scope, cellarData, $http){
       // };
 
       $scope.deleteBeer = function(userid, beerid, beer, $index) {
-      bootbox.confirm("Are you sure you want to delete " + beer + " from your cellar?", function(result){
-          if (result == true) {
+      alertify.confirm("Are you sure you want to delete " + beer + " from your cellar?", onOk);
+          function onOk(){
           var userId = document.getElementById('userId').innerHTML;
           $http.delete('/api/users/' + userId +'/beers/' + beerid);
           $scope.data.beers.splice($index, 1);
       };
-    });
-  };
+    };
+  // };
 
       $scope.sendBeerObject = function(beerBrewery, beerName, beerStyle, beerDate, beerQuantity, beerForTrade, beerId) {
         beerObject = {
