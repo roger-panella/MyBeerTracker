@@ -10,6 +10,9 @@ $(document).ready(function() {
   });
 });
 
+
+
+
 function searchUntappd(searchParams){
   $.ajax({
     url: '/search',

@@ -4,6 +4,7 @@ var yesNo = function() {
   }
 }
 
+// var cellarListCtrl = function ($scope, cellarData, $http){
 var cellarListCtrl = function ($scope, cellarData, $http){
   cellarData
     .success(function(data){
@@ -34,13 +35,23 @@ var cellarListCtrl = function ($scope, cellarData, $http){
             })
             console.log('yesssssss yessssssss whooooooo');
       }
-      $scope.deleteBeer = function(userid, beerid, $index) {
-        vex.dialog.confirm
+      // $scope.deleteBeer = function(userid, beerid, $index) {
+      //
+      //   var userId = document.getElementById('userId').innerHTML;
+      //   $http.delete('/api/users/' + userId +'/beers/' + beerid);
+      //   $scope.data.beers.splice($index, 1);
+      // };
 
-        var userId = document.getElementById('userId').innerHTML;
-        $http.delete('/api/users/' + userId +'/beers/' + beerid);
-        $scope.data.beers.splice($index, 1);
+      $scope.deleteBeer = function(userid, beerid, beer, $index) {
+      bootbox.confirm("Are you sure you want to delete " + beer + " from your cellar?", function(result){
+          if (result == true) {
+          var userId = document.getElementById('userId').innerHTML;
+          $http.delete('/api/users/' + userId +'/beers/' + beerid);
+          $scope.data.beers.splice($index, 1);
       };
+    });
+  };
+
       $scope.sendBeerObject = function(beerBrewery, beerName, beerStyle, beerDate, beerQuantity, beerForTrade, beerId) {
         beerObject = {
           brewery: beerBrewery,
@@ -59,6 +70,13 @@ var cellarListCtrl = function ($scope, cellarData, $http){
       }
     };
 
+var ModalController = function($scope, close) {
+  $scope.close = function(result){
+    close(result, 500);
+  };
+};
+
+
 
 var cellarData = function($http) {
   var userId = document.getElementById('userId').innerHTML;
@@ -70,6 +88,7 @@ angular.module('beerTracker',[]).config(function($interpolateProvider){
       $interpolateProvider.endSymbol('//');
   })
      .controller('cellarListCtrl',cellarListCtrl)
+     .controller('ModalController',ModalController)
      .filter('yesNo',yesNo)
      .service('cellarData', cellarData)
      .service('dataService', function(){
