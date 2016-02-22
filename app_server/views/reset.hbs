@@ -5,9 +5,14 @@
 <form action="/users/reset/{{token}}" method="post">
 
   <fieldset class="form-group">
-    <label for="password">New Password</label>
+    <label for="password">Type your new password</label>
     <input type="password" class="form-control" name="password" value='' placeholder="New Password">
   </fieldset>
+
+  <!-- <fieldset class="form-group">
+    <label for="password-confirm">Confirm Password</label>
+    <input type="password" class="form-control" name="passwordConfirm" placeholder="Retype your Password">
+  </fieldset> -->
 
    <button id="reset-button" class="btn btn-primary" type="submit">Reset Password</button>
 </form>
