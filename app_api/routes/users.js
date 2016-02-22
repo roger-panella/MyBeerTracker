@@ -50,7 +50,7 @@ router.post('/login', function(req, res, next){
       } else if (info.message == 'Incorrect username') {
         req.flash('error', 'Username ' + '\"' + req.body.username + '\"' + ' doesn\'t exist');
       } else if (info.message == 'Incorrect password') {
-        req.flash('error', 'Incorrect password for username ' + '\"' + req.body.username + '\"');
+        req.flash('error', 'Incorrect password for user ' + '\"' + req.body.username + '\"');
       }
       return res.redirect('/users/login');
     }
