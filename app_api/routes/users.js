@@ -65,7 +65,7 @@ router.get('/register', function(req, res){
     if (req.user) {
       res.redirect('/cellar');
   } else {
-      res.render('register', { user: req.user });
+      res.render('register', { user: req.user, username: req.query.username, email: req.query.email });
   }
 });
 
@@ -90,31 +90,6 @@ router.get('/register', function(req, res){
 //     });
 // });
 
-// router.post('/register', function(req, res, next){
-//   if (req.body.password == req.body.passwordConfirm) {
-//   var user = new User({
-//     username: req.body.username,
-//     email: req.body.email,
-//     password: req.body.password
-//   });
-//   user.save (function(err){
-//     if (err) {
-//       req.flash('error', 'Something went wrong with your registration');
-//     }
-//     console.log('---save to db error-----');
-//     console.log(err);
-//     req.logIn(user, function(err){
-//     console.log('logging in');
-//     // res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
-//     });
-//     res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
-//   });
-// } else {
-//   req.flash('error', 'Passwords don\'t match.  Please try again');
-//   res.redirect('/users/register');
-//  };
-// });
-
 // most recent working register post route
 router.post('/register', function(req, res){
   if (req.body.password == req.body.passwordConfirm) {
@@ -124,17 +99,55 @@ router.post('/register', function(req, res){
     password: req.body.password
   });
   user.save (function(err){
-    console.log('----register error------');
-    console.log(err);
+    if (err.code == 11000) {
+      req.flash('error', 'That username or email address is already in use');
+      res.redirect('/users/register/?username=' + req.body.username + '&email=' + req.body.email);
+    } else if (err && err.errors.username){
+      req.flash('error', 'You left the username field blank');
+      res.redirect('/users/register/?email='+req.body.email);
+    } else if (err && err.errors.email) {
+      req.flash('error', 'You left the email address field blank');
+      res.redirect('/users/register/?username='+req.body.username);
+    } else if (err && err.errors.password) {
+      req.flash('error', 'You left the password field blank');
+      res.redirect('/users/register/?username=' + req.body.username + '&email=' + req.body.email);
+    } else if (!req.body.passwordConfirm) {
+      req.flash('error', 'You left the password confirmation field blank');
+      res.redirect('/users/register/?username=' + req.body.username + '&email=' + req.body.email);
+    } else {
+    loginRedirect();
+    }
+  });
+  function loginRedirect(){
     req.logIn(user, function(err){
     res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
-    });
   });
+};
 } else {
   req.flash('error', 'Passwords don\'t match.  Please try again');
-  res.redirect('/users/register');
+  res.redirect('/users/register?username=' + req.body.username + '&email=' + req.body.email);
  };
 });
+
+// router.post('/register', function(req, res){
+//   if (req.body.password == req.body.passwordConfirm) {
+//   var user = new User({
+//     username: req.body.username,
+//     email: req.body.email,
+//     password: req.body.password
+//   });
+//   user.save (function(err){
+//     console.log('----register error------');
+//     console.log(err);
+//     req.logIn(user, function(err){
+//     res.redirect('https://untappd.com/oauth/authenticate/?client_id=' + process.env.UTID + '&response_type=code&redirect_url=' + apiOptions.server + '/cellar');
+//     });
+//   });
+// } else {
+//   req.flash('error', 'Passwords don\'t match.  Please try again');
+//   res.redirect('/users/register');
+//  };
+// });
 // post register route with messed up error messages
 
 // router.post('/register', function(req, res, next){
