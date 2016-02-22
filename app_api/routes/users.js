@@ -56,7 +56,7 @@ router.post('/login', function(req, res, next){
     }
     req.logIn(user, function(err){
       if (err) return next(err);
-      return res.redirect('/');
+      return res.redirect('/cellar');
     });
   })(req, res, next);
 });
@@ -99,7 +99,7 @@ router.post('/register', function(req, res){
     password: req.body.password
   });
   user.save (function(err){
-    if (err.code == 11000) {
+    if (err && err.code == 11000) {
       req.flash('error', 'That username or email address is already in use');
       res.redirect('/users/register/?username=' + req.body.username + '&email=' + req.body.email);
     } else if (err && err.errors.username){
