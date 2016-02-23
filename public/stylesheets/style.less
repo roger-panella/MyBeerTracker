@@ -106,6 +106,13 @@ body {
     }
 }
 
+@media (min-width: @phone-width) and (max-width: @tablet-width){
+  #beer-search {
+    width: 40%;
+    // margin-top: 30px;
+  }
+}
+
 //----------------------Public Cellar-------------------------
 .beer-row {
   height: 40px;
@@ -214,6 +221,18 @@ footer{
   margin-top: 10px;
 }
 
+@media (min-width: @phone-width) and (max-width: @tablet-width){
+  #add-beer-container {
+    width: 40%;
+    // margin-top: 30px;
+  }
+  #add-beer-button {
+    margin-top: 0px;
+  }
+  #beer-searches {
+    margin-bottom: 0px;
+  }
+}
 // --------------------------------Homepage-------------------------------------
 #homepage-top {
   background-image: url("/images/homepage-beer.JPG");
@@ -335,14 +354,10 @@ footer{
       float: left;
       margin-bottom: 0px;
       margin-left: 0px;
-      margin-bottom: 200px;
+      margin-bottom: 250px;
       margin-left: 20px;
   }
 }
-
-
-
-
 
 #home-join-btn {
     position: absolute;
@@ -473,6 +488,16 @@ p {
 @media (max-width: @phone-width) {
   #register-form-container {
     width: 100%;
+  }
+}
+
+@media (min-width: @phone-width) and (max-width: @tablet-width){
+  #register-form-container {
+    width: 65%;
+    margin-top: 30px;
+  }
+  h1.form-heading{
+    margin-top: 50px;
   }
 }
 
@@ -625,6 +650,16 @@ figcaption{
     width: 100%;
   }
 }
+
+@media (min-width: @phone-width) and (max-width: @tablet-width){
+  #forgot-form-container {
+    width: 65%;
+    margin-top: 30px;
+  }
+  h1.form-heading{
+    margin-top: 50px;
+  }
+}
 //-----------------------------Reset Password Page-------------------------------
 
 #reset-form-container {
@@ -639,6 +674,16 @@ figcaption{
 @media (max-width: @phone-width) {
   #reset-form-container {
     width: 100%;
+  }
+}
+
+@media (min-width: @phone-width) and (max-width: @tablet-width){
+  #reset-form-container {
+    width: 65%;
+    margin-top: 30px;
+  }
+  h1.form-heading{
+    margin-top: 50px;
   }
 }
 
