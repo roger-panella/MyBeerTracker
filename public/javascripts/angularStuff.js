@@ -9,6 +9,9 @@ var cellarListCtrl = function ($scope, cellarData, $http){
   cellarData
     .success(function(data){
       $scope.data = data;
+      console.log(data.beers[0].brewery);
+      $scope.sortType = 'brewery'
+      $scope.sortReverse = false;
     })
     .error(function (e){
     });

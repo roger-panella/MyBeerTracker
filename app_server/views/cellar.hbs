@@ -26,7 +26,7 @@
               <th>Delete</th>
             </tr>
 
-            <tr ng-repeat="beer in data.beers | filter : textFilter">
+            <tr ng-repeat="beer in data.beers | orderBy:sortType:sortReverse | filter : textFilter">
               <td>//beer.brewery//</td>
               <td>//beer.beer//</td>
               <td>//beer.style//</td>
