@@ -17,12 +17,12 @@
           </div>
           <table class="table table-striped">
             <tr>
-              <th><a href="#" ng-click="sortType = 'brewery'">Brewery</a></th>
-              <th><a href="#" ng-click="sortType = 'beer'">Beer</a></th>
-              <th><a href="#" ng-click="sortType = 'style'">Style</a></th>
-              <th><a href="#" ng-click="sortType = 'date'">Bottling Date<a></th>
-              <th><a href="#" ng-click="sortType = 'quantity'">Qty</a></th>
-              <th><a href="#" ng-click="sortType = 'forTrade'">For Trade?</a></th>
+              <th><a href="#" ng-click="sortType = 'brewery'">Brewery<span ng-show="sortType == 'brewery'" class="fa fa-caret-down"></span></a></th>
+              <th><a href="#" ng-click="sortType = 'beer'">Beer<span ng-show="sortType == 'beer'" class="fa fa-caret-down"></a></th>
+              <th><a href="#" ng-click="sortType = 'style'">Style<span ng-show="sortType == 'style'" class="fa fa-caret-down"></a></th>
+              <th><a href="#" ng-click="sortType = 'date'">Bottling Date<span ng-show="sortType == 'date'" class="fa fa-caret-down"><a></th>
+              <th><a href="#" ng-click="sortType = 'quantity'">Qty<span ng-show="sortType == 'quantity'" class="fa fa-caret-down"></a></th>
+              <th><a href="#" ng-click="sortType = 'forTrade'">For Trade?<span ng-show="sortType == 'forTrade'" class="fa fa-caret-down"></a></th>
               <th>Delete</th>
             </tr>
 
