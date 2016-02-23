@@ -12,15 +12,33 @@
 
           <table class="table table-striped">
             <tr>
-              <th>Brewery</th>
-              <th>Beer</th>
-              <th>Style</th>
+              <th>
+                <a href="#" ng-click="sortType = 'brewery'; sortReverse = !sortReverse">
+                  Brewery
+                  <span ng-show="sortType == 'brewery' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'brewery' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+              </th>
+              <th>
+                <a href="#" ng-click="sortType = 'beer'; sortReverse = !sortReverse">
+                  Beer
+                  <span ng-show="sortType == 'beer' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'beer' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+              </th>
+              <th>
+                <a href="#" ng-click="sortType = 'style'; sortReverse = !sortReverse">
+                  Style
+                  <span ng-show="sortType == 'style' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'style' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+              </th>
               <th>Bottling Date</th>
               <th>Qty</th>
               <th>For Trade?</th>
             </tr>
 
-            <tr class="beer-row" ng-repeat="beer in data.beers | filter : textFilter">
+            <tr class="beer-row" ng-repeat="beer in data.beers | orderBy:sortType:sortReverse | filter : textFilter">
               <td>//beer.brewery//</td>
               <td>//beer.beer//</td>
               <td>//beer.style//</td>
