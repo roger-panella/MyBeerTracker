@@ -13,29 +13,47 @@
           <table class="table table-striped">
             <tr>
               <th>
-                <a href="#" ng-click="sortType = 'brewery'; sortReverse = !sortReverse">
+                <a href="#" class="th-sort" ng-click="sortType = 'brewery'; sortReverse = !sortReverse">
                   Brewery
                   <span ng-show="sortType == 'brewery' && !sortReverse" class="fa fa-caret-down"></span>
                   <span ng-show="sortType == 'brewery' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
               </th>
               <th>
-                <a href="#" ng-click="sortType = 'beer'; sortReverse = !sortReverse">
+                <a href="#" class="th-sort" ng-click="sortType = 'beer'; sortReverse = !sortReverse">
                   Beer
                   <span ng-show="sortType == 'beer' && !sortReverse" class="fa fa-caret-down"></span>
                   <span ng-show="sortType == 'beer' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
               </th>
               <th>
-                <a href="#" ng-click="sortType = 'style'; sortReverse = !sortReverse">
+                <a href="#" class="th-sort" ng-click="sortType = 'style'; sortReverse = !sortReverse">
                   Style
                   <span ng-show="sortType == 'style' && !sortReverse" class="fa fa-caret-down"></span>
                   <span ng-show="sortType == 'style' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
               </th>
-              <th>Bottling Date</th>
-              <th>Qty</th>
-              <th>For Trade?</th>
+              <th>
+                <a href="#" class="th-sort" ng-click="sortType = 'date'; sortReverse = !sortReverse">
+                  Bottling Date
+                  <span ng-show="sortType == 'date' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'date' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+              </th>
+              <th>
+                <a href="#" class="th-sort" ng-click="sortType = 'quantity'; sortReverse = !sortReverse">
+                  Qty
+                  <span ng-show="sortType == 'quantity' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'quantity' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+              </th>
+              <th>
+                <a href="#" class="th-sort" ng-click="sortType = 'forTrade'; sortReverse = !sortReverse">
+                  For Trade?
+                  <span ng-show="sortType == 'forTrade' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'forTrade' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+              </th>
             </tr>
 
             <tr class="beer-row" ng-repeat="beer in data.beers | orderBy:sortType:sortReverse | filter : textFilter">
