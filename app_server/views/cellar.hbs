@@ -1,5 +1,5 @@
 <div ng-controller="cellarListCtrl">
-<h1>//data.username//'s {{pageHeader.title}}</h1>
+<h1 id="cellar-heading">//data.username//'s {{pageHeader.title}}</h1>
   <div class="container-fluid">
 
     <div class="row">
@@ -19,7 +19,7 @@
              <p>Click "Bottling Date", "Qty" or "For Trade?" to edit</p>
           </div>
 
-          <table class="table table-striped">
+          <table id="cellar-table" class="table table-striped">
             <tr>
               <th>
                 <a href="#" class="th-sort" ng-click="sortType = 'brewery'; sortReverse = !sortReverse">
