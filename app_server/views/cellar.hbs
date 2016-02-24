@@ -9,6 +9,9 @@
           <label id="beer-search-label" for="filter">Search your cellar</label>
           <input id="beer-search" type="text" class="form-control" name="filter" ng-model="textFilter">
 
+          <!-- <div class="row" id="cellar-button-edit-row"> -->
+
+
           <form method="get" action='search?id={{id}}'>
           <button <a href='search?id={{id}}' type="submit" id="add-beer-btn" class="btn btn-primary"></a>Add a Beer</button>
           </form>
@@ -18,7 +21,7 @@
           <div id="edit-instruction">
              <p>Click "Bottling Date", "Qty" or "For Trade?" to edit</p>
           </div>
-
+          <!-- </div> -->
           <table id="cellar-table" class="table table-striped">
             <tr>
               <th>
@@ -79,4 +82,7 @@
           </table>
          </div>
         </div>
+      </div>
+       </div>
+
        <div id="userId">{{theId}}</div>
